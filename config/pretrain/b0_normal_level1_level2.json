@@ -7,8 +7,8 @@
         "class_name": "H5Reader",
         "config": {
             "filename": "/mnt/project/ngoc/CubiAI/datasets/test_normal_level1_level2.h5",
-            "batch_size": 4,
-            "batch_cache": 2,
+            "batch_size": 16,
+            "batch_cache": 8,
             "x_name": "x",
             "y_name": "y",
             "train_folds": [
