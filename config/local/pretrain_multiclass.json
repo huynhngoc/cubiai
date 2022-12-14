@@ -1,0 +1,100 @@
+{
+    "train_params": {
+        "epochs": 200,
+        "callbacks": []
+    },
+    "dataset_params": {
+        "class_name": "H5Reader",
+        "config": {
+            "filename": "//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/test_normal_level1_level2.h5",
+            "batch_size": 4,
+            "batch_cache": 2,
+            "x_name": "x",
+            "y_name": "y",
+            "train_folds": [
+                0,
+                1
+            ],
+            "val_folds": [
+                2
+            ],
+            "test_folds": [
+                3
+            ],
+            "shuffle": true,
+            "preprocessors": [
+                {
+                    "class_name": "OneHot",
+                    "config": {
+                        "num_class": 3
+                    }
+                },
+                {
+                    "class_name": "PretrainedEfficientNet",
+                    "config": {}
+                }
+            ],
+            "augmentations": []
+        }
+    },
+    "input_params": {
+        "shape": [
+            224,
+            224,
+            3
+        ]
+    },
+    "model_params": {
+        "loss": {
+            "class_name": "CategoricalCrossentropy",
+            "config": {}
+        },
+        "optimizer": {
+            "class_name": "adam",
+            "config": {
+                "learning_rate": 0.001
+            }
+        },
+        "metrics": [
+            {
+                "class_name": "AUC"
+            },
+            {
+                "class_name": "CategoricalCrossentropy"
+            },
+            {
+                "class_name": "BinaryAccuracy"
+            },
+            {
+                "class_name": "TruePositives",
+                "config": {
+                    "name": "TP"
+                }
+            },
+            {
+                "class_name": "FalsePositives",
+                "config": {
+                    "name": "FP"
+                }
+            },
+            {
+                "class_name": "TrueNegatives",
+                "config": {
+                    "name": "TN"
+                }
+            },
+            {
+                "class_name": "FalseNegatives",
+                "config": {
+                    "name": "FN"
+                }
+            }
+        ]
+    },
+    "architecture": {
+        "type": "EfficientNetModelLoader",
+        "num_class": 3,
+        "pretrained": true,
+        "class_name": "B0"
+    }
+}
