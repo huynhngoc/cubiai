@@ -6,7 +6,7 @@
     "dataset_params": {
         "class_name": "H5Reader",
         "config": {
-            "filename": "//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/test_normal_level2.h5",
+            "filename": "mnt/project/ngoc/CubiAI/datasets/test_normal_level2.h5",
             "batch_size": 16,
             "batch_cache": 8,
             "x_name": "x",
