@@ -1,15 +1,15 @@
 #!/bin/bash
 #SBATCH --ntasks=1               # 1 core(CPU)
 #SBATCH --nodes=1                # Use 1 node
-#SBATCH --job-name=CubiAI_pretrain   # sensible name for the job
+#SBATCH --job-name=CubiAI_scratch   # sensible name for the job
 #SBATCH --mem=32G                 # Default memory per CPU is 3GB.
 #SBATCH --partition=gpu # Use the verysmallmem-partition for jobs requiring < 10 GB RAM.
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=16
 #SBATCH --mail-user=$USER@nmbu.no # Email me when job is done.
 #SBATCH --mail-type=ALL
-#SBATCH --output=outputs/pretrain-%A.out
-#SBATCH --error=outputs/pretrain-%A.out
+#SBATCH --output=outputs/scratch-%A.out
+#SBATCH --error=outputs/scratch-%A.out
 
 # If you would like to use more please adjust this.
 
@@ -53,4 +53,4 @@ nvidia-modprobe -u -c=0
 # export ITER_PER_EPOCH=200
 export NUM_CPUS=4
 export RAY_ROOT=$TMPDIR/$USER/ray
-singularity exec --nv deoxys.sif python experiment_multiclass.py $1 $PROJECTS/ngoc/CubiAI/perf/pretrain/$2 --temp_folder $SCRATCH_PROJECTS/ceheads/CubiAI/pretrain/$2 --epochs $3 ${@:4}
+singularity exec --nv deoxys.sif python experiment_multiclass.py $1 $PROJECTS/ngoc/CubiAI/perf/scratch/$2 --temp_folder $SCRATCH_PROJECTS/ceheads/CubiAI/scratch/$2 --epochs $3 ${@:4}

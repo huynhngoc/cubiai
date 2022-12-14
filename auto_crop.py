@@ -727,6 +727,7 @@ if __name__ == '__main__':
     img_folder = os.path.join(base_folder, year_str, diagnosis_raw)
     detection_path = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/detection'
     cropped_path = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
+    detection_info_folder = 'csv_detection_info'
 
     # create folders
     if not os.path.exists(os.path.join(detection_path, year_str)):
@@ -868,4 +869,4 @@ if __name__ == '__main__':
         gc.collect()
 
     pd.DataFrame(data).to_csv(
-        f'csv_detection_info/{year}_{diagnosis_raw}.csv', index=False)
+        f'{detection_info_folder}/{year}_{diagnosis_raw}.csv', index=False)
