@@ -5,8 +5,7 @@ from sklearn.model_selection import StratifiedKFold
 import tensorflow as tf
 
 # update these settings
-n_splits = 4
-resize_shape = 32*7
+resize_shape = 32*7 # 224 - 320 - 640 - 800 - 1280
 
 # update these filenames
 cropped_folder = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
@@ -14,10 +13,13 @@ filenames = [
     'csv_detection_info_clean/20_0.csv',
     'csv_detection_info_clean/20_2, primaerlesjon.csv',
 ]
+# REMEMBER TO UPDATE THE DATASET NAME
 h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/test_normal_level2.h5'
 
 # concat all df, remember to reset index
 df = pd.concat([pd.read_csv(fn) for fn in filenames]).reset_index()
+
+# Run the code above to see if the dataset will be balanced at first
 
 # choose and adjust target data
 # in this case, diagnosis 2 should become 1
@@ -28,6 +30,7 @@ df = pd.concat([pd.read_csv(fn) for fn in filenames]).reset_index()
 diagnosis = df['diagnosis'].values.copy()
 diagnosis[diagnosis == 2] = 1
 
+n_splits = 4
 folds = []
 skf = StratifiedKFold(n_splits=n_splits, shuffle=True)
 for train_indice, test_indice in skf.split(df.index, diagnosis):

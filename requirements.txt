@@ -3,3 +3,4 @@ deoxys
 numpy
 pandas
 jupyter
+SimpleITK

@@ -717,8 +717,8 @@ if __name__ == '__main__':
     base_folder = '//nmbu.no/LargeFile/Project/CubiAI/sortering/dicom sortert level 2'
     year = 20
     year_str = str(year)
-    diagnosis = 1
-    diagnosis_raw = '1, artrose'  # do not use norwegian character
+    diagnosis = 0
+    diagnosis_raw = '0'  # do not use norwegian character
     label_encoder = LabelEncoder()
 
     num_classes = 1
