@@ -715,10 +715,10 @@ class RetinaNetLoss(tf.losses.Loss):
 if __name__ == '__main__':
     matplotlib.use("Agg")
     base_folder = '//nmbu.no/LargeFile/Project/CubiAI/sortering/dicom sortert level 2'
-    year = 20
+    year = 21
     year_str = str(year)
     diagnosis = 0
-    diagnosis_raw = '0'  # do not use norwegian character
+    diagnosis_raw = '0, darlig kvalitet'  # do not use norwegian character
     label_encoder = LabelEncoder()
 
     num_classes = 1

@@ -5,7 +5,7 @@ from sklearn.model_selection import StratifiedKFold
 import tensorflow as tf
 
 # update these settings
-resize_shape = 32*7 # 224 - 320 - 640 - 800 - 1280
+resize_shape = 32*7  # 224 - 320 - 640 - 800 - 1280
 
 # update these filenames
 cropped_folder = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
@@ -19,13 +19,15 @@ h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/test_norma
 # concat all df, remember to reset index
 df = pd.concat([pd.read_csv(fn) for fn in filenames]).reset_index()
 
+sum(df['diagnosis'] == 0)
+sum(df['diagnosis'] == 2)
 # Run the code above to see if the dataset will be balanced at first
 
 # choose and adjust target data
 # in this case, diagnosis 2 should become 1
 # In some other cases, for ex, multiclass problem with normal 0, level 1 - 3 then diagnosis can be kept as is
 # Or if we want to separate level 1-3 then we need to change them into 0-2
-# Similarly, if we want to separate normal, level 1 attrose & sklerose, level 2 attrose and primary lesion, level 3 MCD & OCD & UAP,
+# Similarly, if we want to separate normal, level 1 artrose & sklerose, level 2 artrose and primary lesion, level 3 MCD & OCD & UAP,
 # we should transform them into correct category
 diagnosis = df['diagnosis'].values.copy()
 diagnosis[diagnosis == 2] = 1
