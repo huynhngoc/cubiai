@@ -3,7 +3,7 @@ import json
 
 # change setttings here
 
-filename = 'normal_lvl3'
+filename = 'normal_abnormal'
 # dataset filename
 ds_files = 'normal_lvl3.h5'
 

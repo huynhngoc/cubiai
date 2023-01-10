@@ -119,3 +119,7 @@ csv_detection_info/
 csv_detection_info_clean/
 retinanet/
 retinanet_aug2/
+
+
+# Sunniva
+sunniva/*

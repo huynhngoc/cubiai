@@ -6,7 +6,7 @@
     "dataset_params": {
         "class_name": "H5Reader",
         "config": {
-            "filename": "//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/0_3.h5",
+            "filename": "//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/normal_abnormal.h5",
             "batch_size": 16,
             "batch_cache": 8,
             "x_name": "x",
