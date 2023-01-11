@@ -5,48 +5,26 @@ from sklearn.model_selection import StratifiedKFold
 import tensorflow as tf
 
 # update these settings
-resize_shape = 32*20  # 224 - 320 - 640 - 800 - 1280
+resize_shape = 32*25  # 224 - 320 - 640 - 800 - 1280
 
 # update these filenames
 cropped_folder = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
 filenames = [
-    'csv_detection_info_clean/21_0 god kvalitet.csv',
-    'csv_detection_info_clean/19_3, artrose.csv',
-    'csv_detection_info_clean/20_3, artrose.csv',
-    'csv_detection_info_clean/18_1, artrose.csv',
-    'csv_detection_info_clean/18_1, sklerose.csv',
-    'csv_detection_info_clean/18_2, artrose.csv',
-    'csv_detection_info_clean/18_2, primaerlesjon.csv',
-    'csv_detection_info_clean/18_3, artrose.csv',
-    'csv_detection_info_clean/18_3, MCD.csv',
-    'csv_detection_info_clean/18_3, UAP.csv',
-    'csv_detection_info_clean/19_1, artrose.csv',
-    'csv_detection_info_clean/19_1, sklerose.csv',
-    'csv_detection_info_clean/19_2, artrose.csv',
-    'csv_detection_info_clean/19_2, primaerlesjon.csv',
-    'csv_detection_info_clean/19_3, MCD.csv',
-    'csv_detection_info_clean/19_3, OCD.csv',
-    'csv_detection_info_clean/19_3, UAP.csv',
+    'csv_detection_info_clean/21_0, god kvalitet.csv',
+    'csv_detection_info_clean/21_0, darlig kvalitet.csv',
+    'csv_detection_info_clean/21_0, varierende kvalitet.csv',
     'csv_detection_info_clean/20_0.csv',
     'csv_detection_info_clean/20_1, artrose.csv',
     'csv_detection_info_clean/20_1, sklerose.csv',
     'csv_detection_info_clean/20_2, artrose.csv',
     'csv_detection_info_clean/20_2, primaerlesjon.csv',
+    'csv_detection_info_clean/20_3, artrose.csv',
     'csv_detection_info_clean/20_3, MCD.csv',
     'csv_detection_info_clean/20_3, OCD.csv',
     'csv_detection_info_clean/20_3, UAP.csv',
-    'csv_detection_info_clean/21_0 darlig kvalitet.csv',
-    'csv_detection_info_clean/21_0 varierende kvalitet.csv',
-    'csv_detection_info_clean/21_1, artrose.csv',
-    'csv_detection_info_clean/21_1, sklerose.csv',
-    'csv_detection_info_clean/21_2, artrose.csv',
-    'csv_detection_info_clean/21_2, primaerlesjon.csv',
-    'csv_detection_info_clean/21_3, artrose.csv',
-    'csv_detection_info_clean/21_3, OCD.csv',
-    'csv_detection_info_clean/21_3, UAP.csv'
 ]
 # REMEMBER TO UPDATE THE DATASET NAME
-h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/normal_abnormal.h5'
+h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/normal_abnormal20.h5'
 
 # concat all df, remember to reset index
 df = pd.concat([pd.read_csv(fn) for fn in filenames]).reset_index()
@@ -63,8 +41,7 @@ sum(df['diagnosis'] == 2) + \
 # Similarly, if we want to separate normal, level 1 artrose & sklerose, level 2 artrose and primary lesion, level 3 MCD & OCD & UAP,
 # we should transform them into correct category
 diagnosis = df['diagnosis'].values.copy()
-diagnosis[diagnosis != 0] = 1
-sum(diagnosis[diagnosis==1])
+diagnosis[diagnosis == 3] = 1
 
 n_splits = 4
 folds = []

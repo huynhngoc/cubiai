@@ -46,14 +46,15 @@ filenames = [
     'csv_detection_info_clean/21_3, UAP.csv'
 ]
 # REMEMBER TO UPDATE THE DATASET NAME
-h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/normal_abnormal.h5'
+h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/multiclass_level.h5'
 
 # concat all df, remember to reset index
 df = pd.concat([pd.read_csv(fn) for fn in filenames]).reset_index()
 
 sum(df['diagnosis'] == 0)
-sum(df['diagnosis'] == 2) + \
-    sum(df['diagnosis'] == 1) + sum(df['diagnosis'] == 3)
+sum(df['diagnosis'] == 1)
+sum(df['diagnosis'] == 2)
+sum(df['diagnosis'] == 3)
 # Run the code above to see if the dataset will be balanced at first
 
 # choose and adjust target data
