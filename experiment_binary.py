@@ -120,6 +120,7 @@ if __name__ == '__main__':
         custom_modifier_fn=metric_avg_score
     ).run_test(
     ).apply_post_processors(
+        run_test=True,
         map_meta_data=meta,
         metrics=['AUC', 'roc_auc', 'BinaryCrossentropy',
                  'BinaryAccuracy', 'mcc', 'f1', 'f1'],
