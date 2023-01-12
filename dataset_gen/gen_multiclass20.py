@@ -5,7 +5,7 @@ from sklearn.model_selection import StratifiedKFold
 import tensorflow as tf
 
 # update these settings
-resize_shape = 32*25  # 224 - 320 - 640 - 800 - 1280
+resize_shape = 800  # 224 - 320 - 640 - 800 - 1280
 
 # update these filenames
 cropped_folder = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
@@ -24,7 +24,7 @@ filenames = [
     'csv_detection_info_clean/20_3, UAP.csv',
 ]
 # REMEMBER TO UPDATE THE DATASET NAME
-h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/multiclass20.h5'
+h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/800_multiclass20_lvl.h5'
 
 # concat all df, remember to reset index
 df = pd.concat([pd.read_csv(fn) for fn in filenames]).reset_index()

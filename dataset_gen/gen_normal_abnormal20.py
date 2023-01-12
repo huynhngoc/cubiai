@@ -5,7 +5,7 @@ from sklearn.model_selection import StratifiedKFold
 import tensorflow as tf
 
 # update these settings
-resize_shape = 32*25  # 224 - 320 - 640 - 800 - 1280
+resize_shape = 800  # 224 - 320 - 640 - 800 - 1280
 
 # update these filenames
 cropped_folder = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
@@ -13,6 +13,7 @@ filenames = [
     'csv_detection_info_clean/21_0, god kvalitet.csv',
     'csv_detection_info_clean/21_0, darlig kvalitet.csv',
     'csv_detection_info_clean/21_0, varierende kvalitet.csv',
+
     'csv_detection_info_clean/20_0.csv',
     'csv_detection_info_clean/20_1, artrose.csv',
     'csv_detection_info_clean/20_1, sklerose.csv',
