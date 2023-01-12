@@ -11,8 +11,6 @@ resize_shape = 640  # 224 - 320 - 640 - 800 - 1280
 cropped_folder = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
 filenames = [
 
-    'csv_detection_info_clean/19_3, artrose.csv',
-    'csv_detection_info_clean/20_3, artrose.csv',
     'csv_detection_info_clean/18_1, artrose.csv',
     'csv_detection_info_clean/18_1, sklerose.csv',
     'csv_detection_info_clean/18_2, artrose.csv',
@@ -20,24 +18,29 @@ filenames = [
     'csv_detection_info_clean/18_3, artrose.csv',
     'csv_detection_info_clean/18_3, MCD.csv',
     'csv_detection_info_clean/18_3, UAP.csv',
+
     'csv_detection_info_clean/19_1, artrose.csv',
     'csv_detection_info_clean/19_1, sklerose.csv',
     'csv_detection_info_clean/19_2, artrose.csv',
     'csv_detection_info_clean/19_2, primaerlesjon.csv',
+    'csv_detection_info_clean/19_3, artrose.csv',
     'csv_detection_info_clean/19_3, MCD.csv',
     'csv_detection_info_clean/19_3, OCD.csv',
     'csv_detection_info_clean/19_3, UAP.csv',
+
     'csv_detection_info_clean/20_0.csv',
     'csv_detection_info_clean/20_1, artrose.csv',
     'csv_detection_info_clean/20_1, sklerose.csv',
     'csv_detection_info_clean/20_2, artrose.csv',
     'csv_detection_info_clean/20_2, primaerlesjon.csv',
+    'csv_detection_info_clean/20_3, artrose.csv',
     'csv_detection_info_clean/20_3, MCD.csv',
     'csv_detection_info_clean/20_3, OCD.csv',
     'csv_detection_info_clean/20_3, UAP.csv',
+
+    'csv_detection_info_clean/21_0, god kvalitet.csv',
     'csv_detection_info_clean/21_0, darlig kvalitet.csv',
     'csv_detection_info_clean/21_0, varierende kvalitet.csv',
-    'csv_detection_info_clean/21_0, god kvalitet.csv',
     'csv_detection_info_clean/21_1, artrose.csv',
     'csv_detection_info_clean/21_1, sklerose.csv',
     'csv_detection_info_clean/21_2, artrose.csv',
