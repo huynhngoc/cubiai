@@ -10,9 +10,9 @@ ds_files = 'normal_abnormal20.h5'
 # how did you resize the images
 input_size = 800
 # lower learning rates for pretrain models
-learning_rates = [0.00001, 0.0001]
+learning_rates = [0.005, 0.01]
 # which EfficientNet
-model_types = ['B0', 'B1', 'B2', 'B3']
+model_types = ['B3', 'B4']
 # how many classes, pretrain or from scratch
 num_class = 2
 pretrain = False
