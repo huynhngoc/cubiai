@@ -3,19 +3,19 @@ import json
 
 # change setttings here
 
-filename = 'normal_abnormal20_scratch'
+filename = 'normal_abnormal20_pretrain'
 # dataset filename
 ds_files = 'normal_abnormal20.h5'
 
 # how did you resize the images
-input_size = 800
+input_size = 1280
 # lower learning rates for pretrain models
-learning_rates = [0.005, 0.01]
+learning_rates = [0.0005, 0.001]
 # which EfficientNet
-model_types = ['B3', 'B4']
+model_types = ['B2']
 # how many classes, pretrain or from scratch
 num_class = 2
-pretrain = False
+pretrain = True
 
 
 base_ds_path = '/mnt/project/ngoc/CubiAI/datasets/'
