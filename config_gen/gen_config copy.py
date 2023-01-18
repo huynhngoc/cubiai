@@ -37,7 +37,7 @@ with open(template_fn, 'r') as f:
 
 # update batch size and cache
 template['dataset_params']['config']['filename'] = base_ds_path + ds_files
-template['dataset_params']['config']['batch_size'] = 16
+template['dataset_params']['config']['batch_size'] = 8
 template['dataset_params']['config']['batch_cache'] = 8
 
 for lr in learning_rates:
