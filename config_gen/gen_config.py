@@ -3,16 +3,16 @@ import json
 
 # change setttings here
 
-filename = 'normal_lvl3'
+filename = 'normal_abnormal20_800'
 # dataset filename
-ds_files = '0_3.h5'
+ds_files = 'normal_abnormal20.h5'
 
 # how did you resize the images
-input_size = 640
+input_size = 800
 # lower learning rates for pretrain models
-learning_rates = [0.0001, 0.001]
+learning_rates = [0.0005]
 # which EfficientNet
-model_types = ['B0', 'B1', 'B2', 'B3']
+model_types = ['B1', 'B2']
 # how many classes, pretrain or from scratch
 num_class = 2
 pretrain = True

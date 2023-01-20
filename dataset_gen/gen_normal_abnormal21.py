@@ -5,7 +5,7 @@ from sklearn.model_selection import StratifiedKFold
 import tensorflow as tf
 
 # update these settings
-resize_shape = 32*40  # 224 - 320 - 640 - 800 - 1280
+resize_shape = 800  # 224 - 320 - 640 - 800 - 1280
 
 # update these filenames
 cropped_folder = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
