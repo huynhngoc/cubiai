@@ -3,7 +3,7 @@ import json
 
 # change setttings here
 
-filename = 'normal_abnormal21'
+filename = 'normal_abnormal21_bs16'
 # dataset filename
 ds_files = 'normal_abnormal21.h5'
 
@@ -37,7 +37,7 @@ with open(template_fn, 'r') as f:
 
 # update batch size and cache
 template['dataset_params']['config']['filename'] = base_ds_path + ds_files
-template['dataset_params']['config']['batch_size'] = 8
+template['dataset_params']['config']['batch_size'] = 16
 template['dataset_params']['config']['batch_cache'] = 8
 
 for lr in learning_rates:
