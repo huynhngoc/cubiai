@@ -22,7 +22,6 @@ filenames = [
     'csv_detection_info_clean/21_3, MCD.csv',
     'csv_detection_info_clean/21_3, OCD.csv',
     'csv_detection_info_clean/21_3, UAP.csv',
-
     'csv_detection_info_clean/19_3, artrose.csv',
     'csv_detection_info_clean/19_2, artrose.csv'
 ]
@@ -45,6 +44,8 @@ sum(df['diagnosis'] == 2) + \
 # we should transform them into correct category
 diagnosis = df['diagnosis'].values.copy()
 diagnosis[diagnosis == 3] = 1
+diagnosis[diagnosis == 2] = 1
+sum(diagnosis[diagnosis == 1])
 
 n_splits = 4
 folds = []

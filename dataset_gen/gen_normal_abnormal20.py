@@ -43,6 +43,8 @@ sum(df['diagnosis'] == 2) + \
 # we should transform them into correct category
 diagnosis = df['diagnosis'].values.copy()
 diagnosis[diagnosis == 3] = 1
+diagnosis[diagnosis == 2] = 1
+sum(diagnosis[diagnosis == 1])
 
 n_splits = 4
 folds = []
