@@ -13,7 +13,6 @@ filenames = [
     'csv_detection_info_clean/21_0, god kvalitet.csv',
     'csv_detection_info_clean/21_0, darlig kvalitet.csv',
     'csv_detection_info_clean/21_0, varierende kvalitet.csv',
-
     'csv_detection_info_clean/20_0.csv',
     'csv_detection_info_clean/20_1, artrose.csv',
     'csv_detection_info_clean/20_1, sklerose.csv',
