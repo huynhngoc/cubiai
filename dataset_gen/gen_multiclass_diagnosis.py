@@ -35,10 +35,7 @@ h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/800_multic
 # concat all df, remember to reset index
 df = pd.concat([pd.read_csv(fn) for fn in filenames]).reset_index()
 
-sum(df['diagnosis'] == 0)
-sum(df['diagnosis'] == 1)
-sum(df['diagnosis'] == 2)
-sum(df['diagnosis'] == 3)
+
 diagnoses=['artrose', 'sklerose', 'primaerlesjon',
        'MCD', 'OCD', 'UAP']
 
@@ -48,6 +45,13 @@ for d in diagnoses:
     i+=1
 
 np.unique(df['diagnosis'])
+sum(df['diagnosis'] == 0)
+sum(df['diagnosis'] == 1)
+sum(df['diagnosis'] == 2)
+sum(df['diagnosis'] == 3)
+sum(df['diagnosis'] == 4)
+sum(df['diagnosis'] == 5)
+
 
 # Run the code above to see if the dataset will be balanced at first
 
