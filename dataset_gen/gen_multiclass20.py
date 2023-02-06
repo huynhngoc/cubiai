@@ -33,10 +33,10 @@ sum(df['diagnosis'] == 3)
 
 # choose and adjust target data
 # in this case, diagnosis 2 should become 1
-# In some other cases, for ex, multiclass problem with normal 0, level 1 - 3 then diagnosis can be kept as is
-# Or if we want to separate level 1-3 then we need to change them into 0-2
-# Similarly, if we want to separate normal, level 1 artrose & sklerose, level 2 artrose and primary lesion, level 3 MCD & OCD & UAP,
-# we should transform them into correct category
+# In some other cases, for ex, multiclass problem with normal 0, level 1 - 3 then diagnosis can be
+# kept as is. Or if we want to separate level 1-3 then we need to change them into 0-2
+# Similarly, if we want to separate normal, level 1 artrose & sklerose, level 2 artrose and primary
+# lesion, level 3 MCD & OCD & UAP, we should transform them into correct category
 diagnosis = df['diagnosis'].values.copy()
 
 diagnosis[diagnosis == 1] = 0
