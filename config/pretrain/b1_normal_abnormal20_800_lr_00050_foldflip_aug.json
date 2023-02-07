@@ -37,7 +37,7 @@
       "augmentations": [
 
         {
-                "class_name": "ImageAugmentation2D",
+                "class_name": "ClassImageAugmentation2D",
                 "config": {
                     "zoom_range": [
                         0.8,
