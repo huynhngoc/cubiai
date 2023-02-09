@@ -4,6 +4,7 @@ import h5py
 from sklearn.model_selection import StratifiedKFold
 import tensorflow as tf
 
+
 # update these settings
 resize_shape = 800  # 224 - 320 - 640 - 800 - 1280
 
@@ -27,17 +28,20 @@ filenames = [
     'csv_detection_info_clean/19_3, MCD.csv',
     'csv_detection_info_clean/19_3, OCD.csv',
     'csv_detection_info_clean/19_3, UAP.csv',
+    
+    'csv_detection_info_clean/20_3, OCD.csv'
 
 ]
 # REMEMBER TO UPDATE THE DATASET NAME
-h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/800_multiclass_diagnosis.h5'
+h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/800_multiclass_complete.h5'
+
 
 # concat all df, remember to reset index
 df = pd.concat([pd.read_csv(fn) for fn in filenames]).reset_index()
 
-
-diagnoses=['artrose', 'sklerose', 'primaerlesjon',
-       'MCD', 'OCD', 'UAP']
+len(df)
+diagnoses=['1, artrose', '1, sklerose', '2, artrose', '2, primaerlesjon',
+           '3, artrose', '3, MCD', '3, OCD', '3, UAP']
 
 i=0
 for d in diagnoses:
@@ -51,6 +55,8 @@ sum(df['diagnosis'] == 2)
 sum(df['diagnosis'] == 3)
 sum(df['diagnosis'] == 4)
 sum(df['diagnosis'] == 5)
+sum(df['diagnosis'] == 6)
+sum(df['diagnosis'] == 7)
 
 
 # Run the code above to see if the dataset will be balanced at first
