@@ -16,10 +16,10 @@
         1
       ],
       "val_folds": [
-        2
+        3
       ],
       "test_folds": [
-        3
+        2
       ],
       "shuffle": true,
       "preprocessors": [
@@ -52,7 +52,7 @@
     "optimizer": {
       "class_name": "adam",
       "config": {
-        "learning_rate": 0.0005
+        "learning_rate": 0.00005
       }
     },
     "metrics": [

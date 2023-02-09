@@ -16,10 +16,10 @@
         1
       ],
       "val_folds": [
-        2
+        3
       ],
       "test_folds": [
-        3
+        2
       ],
       "shuffle": true,
       "preprocessors": [
