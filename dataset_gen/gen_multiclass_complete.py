@@ -39,24 +39,16 @@ h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/800_multic
 # concat all df, remember to reset index
 df = pd.concat([pd.read_csv(fn) for fn in filenames]).reset_index()
 
-len(df)
-diagnoses=['1, artrose', '1, sklerose', '2, artrose', '2, primaerlesjon',
+
+diagnoses=['0','1, artrose', '1, sklerose', '2, artrose', '2, primaerlesjon',
            '3, artrose', '3, MCD', '3, OCD', '3, UAP']
 
-i=0
-for d in diagnoses:
-    df.diagnosis.iloc[np.where(df['diagnosis_raw'].str.contains(d))] = i
-    i+=1
+for i,d in enumerate(diagnoses): # Change all diagnoses to numbers from 0 through 8
+    print(i, d,sum(df['diagnosis_raw']==d)) # print number of samples in each class
+    df.diagnosis.iloc[np.where(df['diagnosis_raw']==d)] = i
 
 np.unique(df['diagnosis'])
-sum(df['diagnosis'] == 0)
-sum(df['diagnosis'] == 1)
-sum(df['diagnosis'] == 2)
-sum(df['diagnosis'] == 3)
-sum(df['diagnosis'] == 4)
-sum(df['diagnosis'] == 5)
-sum(df['diagnosis'] == 6)
-sum(df['diagnosis'] == 7)
+
 
 
 # Run the code above to see if the dataset will be balanced at first
@@ -68,6 +60,19 @@ sum(df['diagnosis'] == 7)
 # Similarly, if we want to separate normal, level 1 artrose & sklerose, level 2 artrose and primary lesion, level 3 MCD & OCD & UAP,
 # we should transform them into correct category
 diagnosis = df['diagnosis'].values.copy()
+d_raw = diagnosis.copy() # will be the diagnosis_raw in the .h5-file
+
+# CHANGE TARGET IN FOLLOWING LINES
+# important to change in increasing order, so that we dont mix targets.
+diagnosis[diagnosis == 1] = 0
+diagnosis[diagnosis == 2] = 1
+diagnosis[diagnosis == 3] = 2
+diagnosis[diagnosis == 4] = 3
+diagnosis[diagnosis == 5] = 4
+diagnosis[diagnosis == 6] = 5
+diagnosis[diagnosis == 7] = 6
+diagnosis[diagnosis == 8] = 7
+
 
 n_splits = 4
 folds = []
@@ -105,6 +110,7 @@ for i, fold in enumerate(folds):
     with h5py.File(h5_filename, 'a') as f:
         f[f'fold_{i}'].create_dataset('x', data=images, dtype='f4')
         f[f'fold_{i}'].create_dataset('y', data=target, dtype='f4')
+        f[f'fold_{i}'].create_dataset('diagnosis', data=d_raw[fold], dtype='f4') # Want the number corresponding to diagnosis in the dataset
         f[f'fold_{i}'].create_dataset(
             'patient_idx', data=fold, dtype='i4')  # meta data for mapping
 
