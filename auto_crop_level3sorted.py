@@ -715,8 +715,8 @@ class RetinaNetLoss(tf.losses.Loss):
 if __name__ == '__main__':
     matplotlib.use("Agg")
     base_folder = '//nmbu.no/LargeFile/Project/CubiAI/sortering/dicom sortert level 3 (18, 19, 20, 21)'
-    diagnosis = 1
-    diagnosis_raw = '1, artrose og-eller sklerose'  # do not use norwegian character
+    diagnosis = 3
+    diagnosis_raw = '3, MCD'  # do not use norwegian character
     label_encoder = LabelEncoder()
 
     num_classes = 1
@@ -860,4 +860,4 @@ if __name__ == '__main__':
         gc.collect()
 
     pd.DataFrame(data).to_csv(
-        f'{detection_info_folder}/sortedlvl3_{diagnosis_raw}.csv', index=False)
+        f'{detection_info_folder}/{diagnosis_raw}.csv', index=False)

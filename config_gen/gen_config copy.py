@@ -3,18 +3,20 @@ import json
 
 # change setttings here
 
-filename = '800_multiclass20_lvlbs25'
+filename = '800_normal_abnormal_1_bs25'
 # dataset filename
-ds_files = '800_multiclass20_lvl.h5'
+ds_files = '800_normal_abnormal_1.h5'
 
+#batch size
+bs = 25
 # how did you resize the images
 input_size = 800
 # lower learning rates for pretrain models
-learning_rates = [0.00001, 0.001]
+learning_rates = [0.0005]
 # which EfficientNet
-model_types = ['B2']
+model_types = ['B1']
 # how many classes, pretrain or from scratch
-num_class = 3
+num_class = 2
 pretrain = True
 
 
@@ -37,7 +39,7 @@ with open(template_fn, 'r') as f:
 
 # update batch size and cache
 template['dataset_params']['config']['filename'] = base_ds_path + ds_files
-template['dataset_params']['config']['batch_size'] = 25
+template['dataset_params']['config']['batch_size'] = bs
 template['dataset_params']['config']['batch_cache'] = 8
 
 for lr in learning_rates:
