@@ -715,34 +715,26 @@ class RetinaNetLoss(tf.losses.Loss):
 if __name__ == '__main__':
     matplotlib.use("Agg")
     base_folder = '//nmbu.no/LargeFile/Project/CubiAI/sortering/dicom sortert level 3 (18, 19, 20, 21)'
-    year = 21
-    year_str = str(year)
-    diagnosis = 0
-    diagnosis_raw = '0, darlig kvalitet'  # do not use norwegian character
+    diagnosis = 1
+    diagnosis_raw = '1, artrose og-eller sklerose'  # do not use norwegian character
     label_encoder = LabelEncoder()
 
     num_classes = 1
     batch_size = 2
 
-    img_folder = os.path.join(base_folder, year_str, diagnosis_raw)
+    img_folder = os.path.join(base_folder, diagnosis_raw)
     detection_path = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/detection'
     cropped_path = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
     detection_info_folder = 'csv_detection_info'
 
-    # create folders
-    if not os.path.exists(os.path.join(detection_path, year_str)):
-        os.makedirs(os.path.join(detection_path, year_str))
-    if not os.path.exists(os.path.join(cropped_path, year_str)):
-        os.makedirs(os.path.join(cropped_path, year_str))
-
-    if not os.path.exists(os.path.join(detection_path, year_str, diagnosis_raw)):
-        os.makedirs(os.path.join(detection_path, year_str, diagnosis_raw))
-    if not os.path.exists(os.path.join(cropped_path, year_str, diagnosis_raw)):
-        os.makedirs(os.path.join(cropped_path, year_str, diagnosis_raw))
+    if not os.path.exists(os.path.join(detection_path, diagnosis_raw)):
+        os.makedirs(os.path.join(detection_path, diagnosis_raw))
+    if not os.path.exists(os.path.join(cropped_path, diagnosis_raw)):
+        os.makedirs(os.path.join(cropped_path, diagnosis_raw))
 
     # save_path
-    detection_save_path = os.path.join(detection_path, year_str, diagnosis_raw)
-    cropped_save_path = os.path.join(cropped_path, year_str, diagnosis_raw)
+    detection_save_path = os.path.join(detection_path, diagnosis_raw)
+    cropped_save_path = os.path.join(cropped_path, diagnosis_raw)
 
     learning_rates = [2.5e-06, 0.000625, 0.00125, 0.0025, 0.00025, 2.5e-05]
     learning_rate_boundaries = [125, 250, 500, 240000, 360000]
@@ -853,7 +845,6 @@ if __name__ == '__main__':
             'ax1_min': x1,
             'ax1_max': x2,
             'confidence': detections.nmsed_scores[0][0],
-            'year': year,
             'diagnosis': diagnosis,
             'diagnosis_raw': diagnosis_raw
         })
@@ -869,4 +860,4 @@ if __name__ == '__main__':
         gc.collect()
 
     pd.DataFrame(data).to_csv(
-        f'{detection_info_folder}/{year}_{diagnosis_raw}.csv', index=False)
+        f'{detection_info_folder}/sortedlvl3_{diagnosis_raw}.csv', index=False)
