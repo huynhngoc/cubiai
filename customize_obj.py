@@ -87,5 +87,7 @@ class OneHot(BasePreprocessor):
         new_targets = np.zeros((len(targets), self.num_class))
         for i in range(self.num_class):
             new_targets[..., i][targets == i] = 1
+        if self.num_class==1:
+            new_targets[..., 0] = targets
 
         return images, new_targets
