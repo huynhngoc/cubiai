@@ -1,12 +1,12 @@
 import pandas as pd
 import numpy as np
 import h5py
-from sklearn.model_selection import StratifiedKFold, train_test_split
+from sklearn.model_selection import StratifiedKFold
 import tensorflow as tf
 
 
 # update these settings
-resize_shape = 800  # 224 - 320 - 640 - 800 - 1280
+resize_shape = 1280  # 224 - 320 - 640 - 800 - 1280
 
 # update these filenames
 cropped_folder = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
@@ -21,29 +21,34 @@ filenames = [
     'csv_detection_info_clean/3, UAP.csv'
 ]
 # REMEMBER TO UPDATE THE DATASET NAME
-h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/800_normal_abnormal_3.h5'
-rs = 3 # random state
+h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/1280_normal_abnormal_2.h5'
+rs = 12  # random state
 # concat all df, remember to reset index
 ds = pd.concat([pd.read_csv(fn) for fn in filenames]).reset_index()
 # TEST TO GET ONLY 25% OF THE TOTAL SAMPLES IN THE DATASET
 
-diagnoses=['1, artrose og-eller sklerose', '2, artrose', '2, mistanke MCD',
-           '3, artrose', '3, MCD', '3, OCD', '3, UAP'] # Don't have to add 0, since it is already registered as an integer in the diagnosis_raw column
+diagnoses = ['1, artrose og-eller sklerose', '2, artrose', '2, mistanke MCD',
+             '3, artrose', '3, MCD', '3, OCD', '3, UAP']  # Don't have to add 0, since it is already registered as an integer in the diagnosis_raw column
 
-for i,d in enumerate(diagnoses): # Change all diagnoses to numbers from 1 through 7 (Not normal samples)
-    ds.diagnosis.iloc[np.where(ds['diagnosis_raw']==d)] = i+1
+# Change all diagnoses to numbers from 1 through 7 (Not normal samples)
+for i, d in enumerate(diagnoses):
+    ds.diagnosis.iloc[np.where(ds['diagnosis_raw'] == d)] = i+1
 
-np.unique(ds['diagnosis']) # Want all diagnoses from 0 through 7
+np.unique(ds['diagnosis'])  # Want all diagnoses from 0 through 7
 
-df = ds[ds['diagnosis']==0].sample(n=600, random_state=rs, axis = 0, replace=False,ignore_index=True)
-print(0, sum(df['diagnosis']==0))
+df = ds[ds['diagnosis'] == 0].sample(
+    n=500, random_state=124, axis=0, replace=False, ignore_index=True)
+print(0, sum(df['diagnosis'] == 0))
 for d in range(7):
-    if d+1 == 6: # 25% of OCD is only 4, which is too little
-        new = ds[ds['diagnosis']==d+1].sample(n=8, random_state=rs, axis = 0, replace=False)
+    if d+1 == 6:  # 25% of OCD is only 4, which is too little
+        new = ds[ds['diagnosis'] == d +
+                 1].sample(n=8, random_state=rs, axis=0, replace=False)
     else:
-        new = ds[ds['diagnosis']==d+1].sample(frac=0.25, random_state=rs, axis = 0, replace=False)
+        new = ds[ds['diagnosis'] == d +
+                 1].sample(frac=0.25, random_state=rs, axis=0, replace=False)
     df = pd.concat([df, new], ignore_index=True)
-    print(d+1, sum(df['diagnosis']==d+1)) # print number of samples in each class
+    # print number of samples in each class
+    print(d+1, sum(df['diagnosis'] == d+1))
 
 # Run the code above to see if the dataset will be balanced at first
 
@@ -54,7 +59,7 @@ for d in range(7):
 # Similarly, if we want to separate normal, level 1 artrose & sklerose, level 2 artrose and primary lesion, level 3 MCD & OCD & UAP,
 # we should transform them into correct category
 diagnosis = df['diagnosis'].values.copy()
-d_raw = diagnosis.copy() # will be the diagnosis_raw in the .h5-file
+d_raw = diagnosis.copy()  # will be the diagnosis_raw in the .h5-file
 
 # CHANGE TARGET IN FOLLOWING LINES
 # important to change in increasing order, so that we dont mix targets.
@@ -67,8 +72,8 @@ diagnosis[diagnosis == 6] = 1
 diagnosis[diagnosis == 7] = 1
 diagnosis[diagnosis == 8] = 1
 
-sum(diagnosis==1)
-sum(diagnosis==0)
+print('abnormals: ', sum(diagnosis == 1))
+print('normals: ', sum(diagnosis == 0))
 
 n_splits = 4
 folds = []
@@ -105,7 +110,9 @@ for i, fold in enumerate(folds):
     with h5py.File(h5_filename, 'a') as f:
         f[f'fold_{i}'].create_dataset('x', data=images, dtype='f4')
         f[f'fold_{i}'].create_dataset('y', data=target, dtype='f4')
-        f[f'fold_{i}'].create_dataset('diagnosis', data=d_raw[fold], dtype='f4') # Want the number corresponding to diagnosis in the dataset
+        # Want the number corresponding to diagnosis in the dataset
+        f[f'fold_{i}'].create_dataset(
+            'diagnosis', data=d_raw[fold], dtype='f4')
         f[f'fold_{i}'].create_dataset(
             'patient_idx', data=fold, dtype='i4')  # meta data for mapping
 

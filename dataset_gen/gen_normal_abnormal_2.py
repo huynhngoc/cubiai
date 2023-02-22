@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import h5py
-from sklearn.model_selection import StratifiedKFold, train_test_split
+from sklearn.model_selection import StratifiedKFold
 import tensorflow as tf
 
 
