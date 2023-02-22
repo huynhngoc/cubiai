@@ -117,6 +117,9 @@ notebooks/*
 csv_res_old/
 csv_detection_info/
 csv_detection_info_clean/
+csv_detection_info_old/
+csv_detection_info_clean_old/
+
 retinanet/
 retinanet_aug2/
 
