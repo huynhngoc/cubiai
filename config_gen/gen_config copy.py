@@ -3,12 +3,12 @@ import json
 
 # change setttings here
 
-filename = '1280_normal_abnormal_2_bs16'
+filename = '1280_normal_abnormal_2_bs10'
 # dataset filename
 ds_files = '1280_normal_abnormal_2.h5'
 
 #batch size
-bs = 16
+bs = 10
 # how did you resize the images
 input_size = 1280
 # lower learning rates for pretrain models
