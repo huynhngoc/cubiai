@@ -123,5 +123,5 @@ csv_detection_info_clean_old/
 retinanet/
 retinanet_aug2/
 
-sunniva/Elbow_Experiments.xlsx
-
+*.DS_Store
+Elbow_Experiments.xlsx
