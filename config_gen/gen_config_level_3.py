@@ -16,7 +16,7 @@ learning_rates = [0.0001, 0.0005]
 # which EfficientNet
 model_types = ['B2']
 # how many classes, pretrain or from scratch
-num_class = 2
+num_class = 3
 pretrain = True
 
 
