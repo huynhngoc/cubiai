@@ -3,18 +3,18 @@ import json
 
 # change setttings here
 
-filename = '800_level_3_bs25'
+filename = '800_level_3_bs16'
 # dataset filename
 ds_files = '800_level_3.h5'
 
 #batch size
-bs = 25
+bs = 16
 # how did you resize the images
 input_size = 800
 # lower learning rates for pretrain models
-learning_rates = [0.0001, 0.0005]
+learning_rates = [0.0005]
 # which EfficientNet
-model_types = ['B2']
+model_types = ['B3']
 # how many classes, pretrain or from scratch
 num_class = 3
 pretrain = True
