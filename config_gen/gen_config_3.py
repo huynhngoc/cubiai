@@ -3,9 +3,9 @@ import json
 
 # change setttings here
 
-filename = '800_level_3_bs16'
+filename = '800_complete_3_bs16'
 # dataset filename
-ds_files = '800_level_3.h5'
+ds_files = '800_complete_3.h5'
 
 #batch size
 bs = 16
@@ -16,7 +16,7 @@ learning_rates = [0.0005]
 # which EfficientNet
 model_types = ['B3']
 # how many classes, pretrain or from scratch
-num_class = 3
+num_class = 7
 pretrain = True
 
 
