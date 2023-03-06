@@ -89,13 +89,13 @@ if __name__ == '__main__':
         save_val_inputs=False,
     ).apply_post_processors(
         map_meta_data=meta, run_test=False,
-        metrics=['AUC', 'roc_auc', 'roc_auc', 'CategoricalCrossentropy',
+        metrics=['AUC', 'roc_auc', 'CategoricalCrossentropy',
                  'BinaryAccuracy', 'mcc', 'accuracy'],
-        metrics_sources=['tf', 'sklearn', 'sklearn',
+        metrics_sources=['tf', 'sklearn',
                          'tf', 'tf', 'sklearn', 'sklearn'],
-        process_functions=[None, None, None, None, None, decode, decode],
+        process_functions=[None, None, None, None, decode, decode],
         metrics_kwargs=[{}, {'metric_name': 'roc_auc_ovr', 'multi_class': 'ovr'},
-                        {'metric_name': 'roc_auc_ovo', 'multi_class': 'ovo'}, {}, {}, {}, {}]
+                        {}, {}, {}, {}]
     ).plot_performance().load_best_model(
         monitor=args.monitor,
         use_raw_log=False,
@@ -104,11 +104,11 @@ if __name__ == '__main__':
     ).run_test(
     ).apply_post_processors(
         map_meta_data=meta, run_test=True,
-        metrics=['AUC', 'roc_auc', 'roc_auc', 'CategoricalCrossentropy',
+        metrics=['AUC', 'roc_auc', 'CategoricalCrossentropy',
                  'BinaryAccuracy', 'mcc', 'accuracy'],
-        metrics_sources=['tf', 'sklearn', 'sklearn',
+        metrics_sources=['tf','sklearn',
                          'tf', 'tf', 'sklearn', 'sklearn'],
-        process_functions=[None, None, None, None, None, decode, decode],
+        process_functions=[None, None, None, None, decode, decode],
         metrics_kwargs=[{}, {'metric_name': 'roc_auc_ovr', 'multi_class': 'ovr'},
-                        {'metric_name': 'roc_auc_ovo', 'multi_class': 'ovo'}, {}, {}, {}, {}]
+                         {}, {}, {}, {}]
     )
