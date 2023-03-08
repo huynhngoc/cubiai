@@ -45,8 +45,12 @@ for d in range(7):
     df = pd.concat([df, new], ignore_index=False)
     print(d+1, sum(df['diagnosis']==d+1)) # print number of samples in each class
 
+
 # Run the code above to see if the dataset will be balanced at first
 df = ds.drop(df.index).reset_index(drop=True)
+print('number of samples from each diagnosis')
+for d in range(8):
+    print(d, sum(df['diagnosis']==d))
 # choose and adjust target data
 # in this case, diagnosis 2 should become 1
 # In some other cases, for ex, multiclass problem with normal 0, level 1 - 3 then diagnosis can be kept as is
