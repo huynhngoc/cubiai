@@ -9,7 +9,7 @@ import tensorflow as tf
 resize_shape = 800  # 224 - 320 - 640 - 800 - 1280
 
 # update these filenames
-cropped_folder = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
+cropped_folder = '//nmbu.no/Research/Project/CubiAI/preprocess/cropped'
 filenames = [
     'csv_detection_info_clean/0.csv',
     'csv_detection_info_clean/1, artrose og-eller sklerose.csv',
@@ -21,7 +21,7 @@ filenames = [
     'csv_detection_info_clean/3, UAP.csv'
 ]
 # REMEMBER TO UPDATE THE DATASET NAME
-h5_filename = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/800_normal_abnormal_2.h5'
+h5_filename = '//nmbu.no/Research/Project/CubiAI/preprocess/datasets/800_normal_abnormal_2.h5'
 
 # concat all df, remember to reset index
 ds = pd.concat([pd.read_csv(fn) for fn in filenames]).reset_index()
