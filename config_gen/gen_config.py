@@ -3,16 +3,16 @@ import json
 
 # change setttings here
 
-filename = 'normal_abnormal20_bs25_800'
+filename = '800_artrose_rest_bs16_4'
 # dataset filename
-ds_files = 'normal_abnormal20.h5'
-
+ds_files = 'artrose_vs_rest_4.h5'
+bs=16
 # how did you resize the images
 input_size = 800
 # lower learning rates for pretrain models
-learning_rates = [0.001]
+learning_rates = [0.0005,0.0001]
 # which EfficientNet
-model_types = ['B2']
+model_types = ['B3']
 # how many classes, pretrain or from scratch
 num_class = 2
 pretrain = True
@@ -37,7 +37,7 @@ with open(template_fn, 'r') as f:
 
 # update batch size and cache
 template['dataset_params']['config']['filename'] = base_ds_path + ds_files
-template['dataset_params']['config']['batch_size'] = 25
+template['dataset_params']['config']['batch_size'] = bs
 template['dataset_params']['config']['batch_cache'] = 8
 
 for lr in learning_rates:
