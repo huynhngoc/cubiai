@@ -3,9 +3,9 @@ import json
 
 # change setttings here
 
-filename = '800_artrose_rest_bs16_4'
+filename = '800_artrose_rest_bs16'
 # dataset filename
-ds_files = 'artrose_vs_rest_4.h5'
+ds_files = '800_arthrosis_vs_rest.h5'
 bs=16
 # how did you resize the images
 input_size = 800
