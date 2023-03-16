@@ -3,16 +3,16 @@ import json
 
 # change setttings here
 
-filename = '800_artrose_rest_bs16'
+filename = '800_lvl1_rest_bs16'
 # dataset filename
-ds_files = '800_arthrosis_vs_rest.h5'
-bs=16
+ds_files = '800_lvl1_vs_rest.h5'
+bs=25
 # how did you resize the images
 input_size = 800
 # lower learning rates for pretrain models
-learning_rates = [0.0005,0.0001]
+learning_rates = [0.001,0.0005,0.0001]
 # which EfficientNet
-model_types = ['B3']
+model_types = ['B2']
 # how many classes, pretrain or from scratch
 num_class = 2
 pretrain = True
