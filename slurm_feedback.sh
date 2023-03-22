@@ -8,8 +8,8 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --mail-user=sunniva.elisabeth.daae.steiro@nmbu.no # Email me when job is done.
 #SBATCH --mail-type=ALL
-#SBATCH --output=outputs/unet-%A.out
-#SBATCH --error=outputs/unet-%A.out
+#SBATCH --output=outputs/feedback-%A.out
+#SBATCH --error=outputs/feedback-%A.out
 
 # If you would like to use more please adjust this.
 
