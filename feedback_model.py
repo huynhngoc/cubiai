@@ -133,8 +133,10 @@ if __name__ == '__main__':
     if os.path.exists(log_folder + '/logs'):
         shutil.rmtree(log_folder + '/logs')
         os.makedirs(log_folder + '/logs')
-
-    ex.post_processors = None
+        
+    if os.path.exists(log_folder + '/log_new.csv'):
+        os.remove(log_folder + '/log_new.csv')
+        ex.post_processors = None
 
     ex.run_experiment(
         train_history_log=True,
