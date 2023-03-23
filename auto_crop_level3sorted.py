@@ -714,17 +714,18 @@ class RetinaNetLoss(tf.losses.Loss):
 
 if __name__ == '__main__':
     matplotlib.use("Agg")
-    base_folder = '//nmbu.no/LargeFile/Project/CubiAI/sortering/dicom sortert level 3 (18, 19, 20, 21)'
-    diagnosis = 3
-    diagnosis_raw = '3, MCD'  # do not use norwegian character
+    #base_folder = '//nmbu.no/LargeFile/Project/CubiAI/sortering/dicom sortert level 3 (18, 19, 20, 21)'
+    base_folder='P:/CubiAI/sortering/dicom sortert level 3 (18, 19, 20, 21)'
+    diagnosis = 0
+    diagnosis_raw = '0 nye (lagt til 15.03.23)'  # do not use norwegian character
     label_encoder = LabelEncoder()
 
     num_classes = 1
     batch_size = 2
 
     img_folder = os.path.join(base_folder, diagnosis_raw)
-    detection_path = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/detection'
-    cropped_path = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
+    detection_path = '//nmbu.no/Research/Project/CubiAI/preprocess/detection'
+    cropped_path = '//nmbu.no/Research/Project/CubiAI/preprocess/cropped'
     detection_info_folder = 'csv_detection_info'
 
     if not os.path.exists(os.path.join(detection_path, diagnosis_raw)):
