@@ -1,0 +1,40 @@
+{
+    "config": {
+        "filename": "/mnt/project/ngoc/CubiAI/datasets/800_complete_ext_level_3.h5",
+        "train_folds": [
+            0,
+            1
+        ],
+        "val_folds": [
+            1
+        ],
+        "test_folds": [
+            2,
+            3
+        ],
+        "augmentations": [
+            {
+                "class_name": "ClassImageAugmentation2D",
+                "config": {
+                    "zoom_range": [
+                        0.8,
+                        1.2
+                    ],
+                    "shift_range": [
+                        30,
+                        30
+                    ],
+                    "brightness_range": [
+                        0.7,
+                        1.3
+                    ],
+                    "contrast_range": [
+                        0.6,
+                        1.4
+                    ],
+                    "noise_variance": 0.05
+                }
+            }
+        ]
+    }
+}

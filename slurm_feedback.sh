@@ -44,7 +44,7 @@ for f in $(ls $PROJECTS/ngoc/CubiAI/datasets/*)
     done
 
 
-echo "Finished seting up files."
+echo "Finished setting up files."
 
 # Hack to ensure that the GPUs work
 nvidia-modprobe -u -c=0
