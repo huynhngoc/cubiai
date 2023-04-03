@@ -94,51 +94,51 @@ if __name__ == '__main__':
         log_base_path=log_folder,
         temp_base_path=temp_folder)
 
-    if args.best_epoch == 0:
-        try:
-            ex = ex.load_best_model(
-                monitor=args.monitor,
-                use_raw_log=False,
-                mode=args.monitor_mode,
-                custom_modifier_fn=metric_avg_score
-            )
-        except Exception as e:
-            print("Error while loading best model", e)
-            print(e)
-    else:
-        print(f'Loading model from epoch {args.best_epoch}')
-        ex.from_file(args.log_folder +
-                     f'/model/model.{args.best_epoch:03d}.h5')
+    # if args.best_epoch == 0:
+    #     try:
+    #         ex = ex.load_best_model(
+    #             monitor=args.monitor,
+    #             use_raw_log=False,
+    #             mode=args.monitor_mode,
+    #             custom_modifier_fn=metric_avg_score
+    #         )
+    #     except Exception as e:
+    #         print("Error while loading best model", e)
+    #         print(e)
+    # else:
+    #     print(f'Loading model from epoch {args.best_epoch}')
+    #     ex.from_file(args.log_folder +
+    #                  f'/model/model.{args.best_epoch:03d}.h5')
 
-    # deleting old predicted files
-    if os.path.exists(log_folder + ex.PREDICTION_PATH):
-        shutil.rmtree(log_folder + ex.PREDICTION_PATH)
-        os.makedirs(log_folder + ex.PREDICTION_PATH)
+    # # deleting old predicted files
+    # if os.path.exists(log_folder + ex.PREDICTION_PATH):
+    #     shutil.rmtree(log_folder + ex.PREDICTION_PATH)
+    #     os.makedirs(log_folder + ex.PREDICTION_PATH)
 
-    weights = ex.model._model.optimizer.get_weights()
-    weights[0] = np.array(args.initial_epoch *
-                          int(os.environ.get('ITER_PER_EPOCH', 100)))
-    ex.model._model.optimizer.set_weights(weights)
+    # weights = ex.model._model.optimizer.get_weights()
+    # weights[0] = np.array(args.initial_epoch *
+    #                       int(os.environ.get('ITER_PER_EPOCH', 100)))
+    # ex.model._model.optimizer.set_weights(weights)
 
-    print('Optimizer state:', ex.model._model.optimizer.iterations)
-    print('original learning_rate:', ex.model._model.optimizer.learning_rate)
-    ex.load_new_dataset(
-        args.dataset_file,
-        map_meta_data=meta,
-    )
+    # print('Optimizer state:', ex.model._model.optimizer.iterations)
+    # print('original learning_rate:', ex.model._model.optimizer.learning_rate)
+    # ex.load_new_dataset(
+    #     args.dataset_file,
+    #     map_meta_data=meta,
+    # )
 
-    # deleting old models
-    if os.path.exists(log_folder + ex.MODEL_PATH):
-        shutil.rmtree(log_folder + ex.MODEL_PATH)
-        os.makedirs(log_folder + ex.MODEL_PATH)
+    # # deleting old models
+    # if os.path.exists(log_folder + ex.MODEL_PATH):
+    #     shutil.rmtree(log_folder + ex.MODEL_PATH)
+    #     os.makedirs(log_folder + ex.MODEL_PATH)
 
-    if os.path.exists(log_folder + '/logs'):
-        shutil.rmtree(log_folder + '/logs')
-        os.makedirs(log_folder + '/logs')
+    # if os.path.exists(log_folder + '/logs'):
+    #     shutil.rmtree(log_folder + '/logs')
+    #     os.makedirs(log_folder + '/logs')
         
-    if os.path.exists(log_folder + '/log_new.csv'):
-        os.remove(log_folder + '/log_new.csv')
-        ex.post_processors = None
+    # if os.path.exists(log_folder + '/log_new.csv'):
+    #     os.remove(log_folder + '/log_new.csv')
+    #     ex.post_processors = None
 
     # ex.run_experiment(
     #     train_history_log=True,
