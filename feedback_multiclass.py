@@ -140,13 +140,13 @@ if __name__ == '__main__':
         os.remove(log_folder + '/log_new.csv')
         ex.post_processors = None
 
-    ex.run_experiment(
-        train_history_log=True,
-        model_checkpoint_period=args.model_checkpoint_period,
-        prediction_checkpoint_period=args.prediction_checkpoint_period,
-        epochs=args.epochs+args.initial_epoch,
-        initial_epoch=args.initial_epoch
-    ).apply_post_processors(
+    # ex.run_experiment(
+    #     train_history_log=True,
+    #     model_checkpoint_period=args.model_checkpoint_period,
+    #     prediction_checkpoint_period=args.prediction_checkpoint_period,
+    #     epochs=args.epochs+args.initial_epoch,
+    #     initial_epoch=args.initial_epoch)
+    ex.apply_post_processors(
         map_meta_data=meta,
         metrics=['AUC', 'roc_auc', 'CategoricalCrossentropy', 
                  'BinaryAccuracy', 'mcc', 'accuracy'],
