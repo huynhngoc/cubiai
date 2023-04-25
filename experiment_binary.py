@@ -92,27 +92,27 @@ if __name__ == '__main__':
         temp_base_path=args.temp_folder
     ).from_full_config(
         args.config_file
-    # ).run_experiment(
-    #     train_history_log=True,
-    #     model_checkpoint_period=20,
-    #     prediction_checkpoint_period=20,
-    #     epochs=20,
-    #     save_val_inputs=False,
-    # ).run_experiment(
-    #     train_history_log=True,
-    #     model_checkpoint_period=args.model_checkpoint_period,
-    #     prediction_checkpoint_period=args.prediction_checkpoint_period,
-    #     epochs=args.epochs,
-    #     initial_epoch=20,
-    #     save_val_inputs=False,
-    # ).apply_post_processors(
-    #     map_meta_data=meta,
-    #     metrics=['AUC', 'roc_auc', 'BinaryCrossentropy',
-    #              'BinaryAccuracy', 'mcc', 'f1', 'f1'],
-    #     metrics_sources=['tf', 'sklearn',
-    #                      'tf', 'tf', 'sklearn', 'sklearn', 'sklearn'],
-    #     process_functions=[None, None, None, None, binarize, binarize, flip],
-    #     metrics_kwargs=[{}, {}, {}, {}, {}, {}, {'metric_name': 'f1_0'}]
+    ).run_experiment(
+        train_history_log=True,
+        model_checkpoint_period=20,
+        prediction_checkpoint_period=20,
+        epochs=20,
+        save_val_inputs=False,
+    ).run_experiment(
+        train_history_log=True,
+        model_checkpoint_period=args.model_checkpoint_period,
+        prediction_checkpoint_period=args.prediction_checkpoint_period,
+        epochs=args.epochs,
+        initial_epoch=20,
+        save_val_inputs=False,
+    ).apply_post_processors(
+        map_meta_data=meta,
+        metrics=['AUC', 'roc_auc', 'BinaryCrossentropy',
+                 'BinaryAccuracy', 'mcc', 'f1', 'f1'],
+        metrics_sources=['tf', 'sklearn',
+                         'tf', 'tf', 'sklearn', 'sklearn', 'sklearn'],
+        process_functions=[None, None, None, None, binarize, binarize, flip],
+        metrics_kwargs=[{}, {}, {}, {}, {}, {}, {'metric_name': 'f1_0'}]
     ).plot_performance().load_best_model(
         monitor=args.monitor,
         use_raw_log=False,
