@@ -92,19 +92,19 @@ if __name__ == '__main__':
         temp_base_path=args.temp_folder
     ).from_full_config(
         args.config_file
-    ).run_experiment(
-        train_history_log=True,
-        model_checkpoint_period=20,
-        prediction_checkpoint_period=20,
-        epochs=20,
-        save_val_inputs=False,
-    ).run_experiment(
-        train_history_log=True,
-        model_checkpoint_period=args.model_checkpoint_period,
-        prediction_checkpoint_period=args.prediction_checkpoint_period,
-        epochs=args.epochs,
-        initial_epoch=20,
-        save_val_inputs=False,
+    # ).run_experiment(
+    #     train_history_log=True,
+    #     model_checkpoint_period=20,
+    #     prediction_checkpoint_period=20,
+    #     epochs=20,
+    #     save_val_inputs=False,
+    # ).run_experiment(
+    #     train_history_log=True,
+    #     model_checkpoint_period=args.model_checkpoint_period,
+    #     prediction_checkpoint_period=args.prediction_checkpoint_period,
+    #     epochs=args.epochs,
+    #     initial_epoch=20,
+    #     save_val_inputs=False,
     ).apply_post_processors(
         map_meta_data=meta,
         metrics=['AUC', 'roc_auc', 'BinaryCrossentropy',
