@@ -105,14 +105,14 @@ if __name__ == '__main__':
     #     epochs=args.epochs,
     #     initial_epoch=20,
     #     save_val_inputs=False,
-    ).apply_post_processors(
-        map_meta_data=meta,
-        metrics=['AUC', 'roc_auc', 'BinaryCrossentropy',
-                 'BinaryAccuracy', 'mcc', 'f1', 'f1'],
-        metrics_sources=['tf', 'sklearn',
-                         'tf', 'tf', 'sklearn', 'sklearn', 'sklearn'],
-        process_functions=[None, None, None, None, binarize, binarize, flip],
-        metrics_kwargs=[{}, {}, {}, {}, {}, {}, {'metric_name': 'f1_0'}]
+    # ).apply_post_processors(
+    #     map_meta_data=meta,
+    #     metrics=['AUC', 'roc_auc', 'BinaryCrossentropy',
+    #              'BinaryAccuracy', 'mcc', 'f1', 'f1'],
+    #     metrics_sources=['tf', 'sklearn',
+    #                      'tf', 'tf', 'sklearn', 'sklearn', 'sklearn'],
+    #     process_functions=[None, None, None, None, binarize, binarize, flip],
+    #     metrics_kwargs=[{}, {}, {}, {}, {}, {}, {'metric_name': 'f1_0'}]
     ).plot_performance().load_best_model(
         monitor=args.monitor,
         use_raw_log=False,
