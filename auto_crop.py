@@ -13,6 +13,8 @@ import matplotlib.pyplot as plt
 import matplotlib
 import gc
 
+# region Helper functions and models
+
 
 def swap_xy(boxes):
     """Swaps order the of x and y coordinates of the boxes.
@@ -712,22 +714,25 @@ class RetinaNetLoss(tf.losses.Loss):
         return loss
 
 
+# endregion Helper functions and models
+
 if __name__ == '__main__':
     matplotlib.use("Agg")
-    base_folder = '//nmbu.no/LargeFile/Project/CubiAI/sortering/dicom sortert level 2'
-    year = 20
+    # base_folder = '//nmbu.no/LargeFile/Project/CubiAI/sortering/dicom sortert level 2'
+    year = 22
     year_str = str(year)
-    diagnosis = 1
-    diagnosis_raw = '1, artrose'  # do not use norwegian character
+    diagnosis = 3
+    diagnosis_raw = '3, UAP'  # do not use norwegian character
     label_encoder = LabelEncoder()
 
     num_classes = 1
     batch_size = 2
 
-    img_folder = os.path.join(base_folder, year_str, diagnosis_raw)
-    detection_path = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/detection'
-    cropped_path = '//nmbu.no/LargeFile/Project/CubiAI/preprocess/cropped'
-    detection_info_folder = 'csv_detection_info'
+    # img_folder = os.path.join(base_folder, year_str, diagnosis_raw)
+    img_folder = 'P:/CubiAI/sortering/dicom sortert level 3 (18, 19, 20, 21, 22)/NEW, from 2022/3, UAP'
+    detection_path = 'P:/CubiAI/preprocess_data/detection'
+    cropped_path = 'P:/CubiAI/preprocess_data/cropped'
+    detection_info_folder = 'P:/CubiAI/preprocess_data/csv_detection_info'
 
     # create folders
     if not os.path.exists(os.path.join(detection_path, year_str)):
@@ -800,16 +805,6 @@ if __name__ == '__main__':
             yield fn, batch_images, (img[..., 0] / 255)
 
     # prediction
-
-    # model.load_weights('retinanet\weights_epoch_10')
-    # model.load_weights('retinanet\weights_epoch_30')
-    # previously chosen
-    # model.load_weights('retinanet\weights_epoch_102')
-    # current 0.13 - 0.18
-    # model.load_weights('retinanet_aug2\weights_epoch_39')
-    # 0.03 0.17
-    # model.load_weights('retinanet_aug2\weights_epoch_87')
-
     inference_model_1 = create_model('retinanet\weights_epoch_102')
     inference_model_2 = create_model('retinanet_aug2\weights_epoch_87')
 
@@ -846,7 +841,7 @@ if __name__ == '__main__':
             save_name=f'{detection_save_path}/{fn}.jpg'
         )
         data.append({
-            'base_path': base_folder,
+            'base_path': img_folder,
             'filename': fn,
             'ax0_min': y1,
             'ax0_max': y2,
