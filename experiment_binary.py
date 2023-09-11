@@ -49,7 +49,7 @@ if __name__ == '__main__':
     parser.add_argument("--epochs", default=20, type=int)
     parser.add_argument("--model_checkpoint_period", default=1, type=int)
     parser.add_argument("--prediction_checkpoint_period", default=1, type=int)
-    parser.add_argument("--meta", default='patient_idx', type=str)
+    parser.add_argument("--meta", default='patient_idx,diagnosis', type=str)
     parser.add_argument(
         "--monitor", default='avg_score', type=str)
     parser.add_argument(
