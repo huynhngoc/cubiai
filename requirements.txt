@@ -3,3 +3,5 @@ deoxys
 numpy
 pandas
 jupyter
+SimpleITK
+scikit-learn

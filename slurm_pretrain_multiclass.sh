@@ -6,7 +6,7 @@
 #SBATCH --partition=gpu # Use the verysmallmem-partition for jobs requiring < 10 GB RAM.
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=16
-#SBATCH --mail-user=$USER@nmbu.no # Email me when job is done.
+#SBATCH --mail-user=sunniva.elisabeth.daae.steiro@nmbu.no # Email me when job is done.
 #SBATCH --mail-type=ALL
 #SBATCH --output=outputs/pretrain-%A.out
 #SBATCH --error=outputs/pretrain-%A.out

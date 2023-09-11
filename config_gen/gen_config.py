@@ -3,16 +3,16 @@ import json
 
 # change setttings here
 
-filename = 'normal_abnormal'
+filename = '800_lvl1_rest_bs16'
 # dataset filename
-ds_files = 'normal_abnormal.h5'
-
+ds_files = '800_lvl1_vs_rest.h5'
+bs=25
 # how did you resize the images
-input_size = 640
+input_size = 800
 # lower learning rates for pretrain models
-learning_rates = [0.0001, 0.001]
+learning_rates = [0.001,0.0005,0.0001]
 # which EfficientNet
-model_types = ['B0', 'B1', 'B2', 'B3']
+model_types = ['B2']
 # how many classes, pretrain or from scratch
 num_class = 2
 pretrain = True
@@ -36,7 +36,8 @@ with open(template_fn, 'r') as f:
     template = json.load(f)
 
 # update batch size and cache
-template['dataset_params']['config']['batch_size'] = 16
+template['dataset_params']['config']['filename'] = base_ds_path + ds_files
+template['dataset_params']['config']['batch_size'] = bs
 template['dataset_params']['config']['batch_cache'] = 8
 
 for lr in learning_rates:

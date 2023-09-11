@@ -1,7 +1,6 @@
 """
 Run the experiments pipeline
 """
-
 import customize_obj
 # import h5py
 # from tensorflow.keras.callbacks import EarlyStopping
@@ -32,7 +31,6 @@ metrics.SCORERS['mcc'] = Matthews_corrcoef_scorer()
 
 def metric_avg_score(res_df, postprocessor):
     res_df['avg_score'] = res_df[['AUC', 'accuracy', 'mcc']].mean(axis=1)
-
     return res_df
 
 
@@ -40,7 +38,6 @@ if __name__ == '__main__':
     gpus = tf.config.list_physical_devices('GPU')
     if not gpus:
         raise RuntimeError("GPU Unavailable")
-
     parser = argparse.ArgumentParser()
     parser.add_argument("config_file")
     parser.add_argument("log_folder")
@@ -54,9 +51,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--monitor_mode", default='max', type=str)
     parser.add_argument("--memory_limit", default=0, type=int)
-
     args, unknown = parser.parse_known_args()
-
     if args.memory_limit:
         # Restrict TensorFlow to only allocate X-GB of memory on the first GPU
         try:
@@ -70,12 +65,10 @@ if __name__ == '__main__':
         except RuntimeError as e:
             # Virtual devices must be set before GPUs have been initialized
             print(e)
-
     if '2d' in args.log_folder:
         meta = args.meta
     else:
         meta = args.meta.split(',')[0]
-
     print('training from configuration', args.config_file,
           'and saving log files to', args.log_folder)
     print('Unprocesssed prediction are saved to', args.temp_folder)
@@ -88,7 +81,6 @@ if __name__ == '__main__':
 
     def decode(targets, predictions):
         return targets.argmax(axis=1), predictions.argmax(axis=1)
-
     exp = DefaultExperimentPipeline(
         log_base_path=args.log_folder,
         temp_base_path=args.temp_folder
@@ -113,9 +105,9 @@ if __name__ == '__main__':
                  'BinaryAccuracy', 'mcc', 'accuracy'],
         metrics_sources=['tf', 'sklearn', 'sklearn',
                          'tf', 'tf', 'sklearn', 'sklearn'],
-        process_functions=[None, None, None, None, None, decode, decode],
+        process_functions=[None, None, None, None, decode, decode],
         metrics_kwargs=[{}, {'metric_name': 'roc_auc_ovr', 'multi_class': 'ovr'},
-                        {'metric_name': 'roc_auc_ovo', 'multi_class': 'ovo'}, {}, {}, {}, {}]
+                        {}, {}, {}, {}]
     ).plot_performance().load_best_model(
         monitor=args.monitor,
         use_raw_log=False,
@@ -126,9 +118,9 @@ if __name__ == '__main__':
         map_meta_data=meta, run_test=True,
         metrics=['AUC', 'roc_auc', 'roc_auc', 'CategoricalCrossentropy',
                  'BinaryAccuracy', 'mcc', 'accuracy'],
-        metrics_sources=['tf', 'sklearn', 'sklearn',
+        metrics_sources=['tf', 'sklearn',
                          'tf', 'tf', 'sklearn', 'sklearn'],
-        process_functions=[None, None, None, None, None, decode, decode],
+        process_functions=[None, None, None, None, decode, decode],
         metrics_kwargs=[{}, {'metric_name': 'roc_auc_ovr', 'multi_class': 'ovr'},
-                        {'metric_name': 'roc_auc_ovo', 'multi_class': 'ovo'}, {}, {}, {}, {}]
+                        {}, {}, {}, {}]
     )

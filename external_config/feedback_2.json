@@ -1,0 +1,20 @@
+{
+    "config": {
+        "filename": "/mnt/project/ngoc/CubiAI/datasets/800_only_wrong_2.h5",
+
+        "train_folds": [
+            0,
+            1,
+            2
+        ],
+        "val_folds": [
+            3
+        ],
+        "test_folds":[
+            0,
+            1,
+            2,
+            3
+        ]
+    }
+}
