@@ -2,12 +2,12 @@
 #SBATCH --ntasks=1               # 1 core(CPU)
 #SBATCH --nodes=1                # Use 1 node
 #SBATCH --job-name=CubiAI_pretrain   # sensible name for the job
-#SBATCH --mem=32G                 # Default memory per CPU is 3GB.
+#SBATCH --mem=128G                 # Default memory per CPU is 3GB.
 #SBATCH --partition=gpu # Use the verysmallmem-partition for jobs requiring < 10 GB RAM.
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=16
-#SBATCH --mail-user=sunniva.elisabeth.daae.steiro@nmbu.no # Email me when job is done.
-#SBATCH --mail-type=ALL
+#SBATCH --mail-user=ngochuyn@nmbu.no # Email me when job is done.
+#SBATCH --mail-type=FAIL
 #SBATCH --output=outputs/pretrain-%A.out
 #SBATCH --error=outputs/pretrain-%A.out
 
@@ -26,22 +26,22 @@ if [ $# -lt 3 ];
     exit 0
     fi
 
-if [ ! -d "$TMPDIR/$USER/CubiAI" ]
-    then
-    echo "Didn't find dataset folder. Copying files..."
-    mkdir --parents $TMPDIR/$USER/CubiAI
-    fi
+# if [ ! -d "$TMPDIR/$USER/CubiAI" ]
+#     then
+#     echo "Didn't find dataset folder. Copying files..."
+#     mkdir --parents $TMPDIR/$USER/CubiAI
+#     fi
 
-for f in $(ls $PROJECTS/ngoc/CubiAI/datasets/*)
-    do
-    FILENAME=`echo $f | awk -F/ '{print $NF}'`
-    echo $FILENAME
-    if [ ! -f "$TMPDIR/$USER/CubiAI/$FILENAME" ]
-        then
-        echo "copying $f"
-        cp -r $PROJECTS/ngoc/CubiAI/datasets/$FILENAME $TMPDIR/$USER/CubiAI/
-        fi
-    done
+# for f in $(ls $PROJECTS/ngoc/CubiAI/datasets/*)
+#     do
+#     FILENAME=`echo $f | awk -F/ '{print $NF}'`
+#     echo $FILENAME
+#     if [ ! -f "$TMPDIR/$USER/CubiAI/$FILENAME" ]
+#         then
+#         echo "copying $f"
+#         cp -r $PROJECTS/ngoc/CubiAI/datasets/$FILENAME $TMPDIR/$USER/CubiAI/
+#         fi
+#     done
 
 
 echo "Finished seting up files."
