@@ -94,16 +94,16 @@ if __name__ == '__main__':
         args.config_file
     ).run_experiment(
         train_history_log=True,
-        model_checkpoint_period=20,
-        prediction_checkpoint_period=20,
-        epochs=20,
+        model_checkpoint_period=5,
+        prediction_checkpoint_period=5,
+        epochs=5,
         save_val_inputs=False,
     ).run_experiment(
         train_history_log=True,
         model_checkpoint_period=args.model_checkpoint_period,
         prediction_checkpoint_period=args.prediction_checkpoint_period,
         epochs=args.epochs,
-        initial_epoch=20,
+        initial_epoch=5,
         save_val_inputs=False,
     ).apply_post_processors(
         map_meta_data=meta,
