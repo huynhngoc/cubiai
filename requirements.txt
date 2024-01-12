@@ -1,5 +1,5 @@
 tensorflow==2.5.0
-deoxys
+http://github.com/huynhngoc/deoxys/archive/master.zip
 numpy
 pandas
 jupyter
