@@ -2,7 +2,7 @@
 #SBATCH --ntasks=1               # 1 core(CPU)
 #SBATCH --nodes=1                # Use 1 node
 #SBATCH --job-name=CubiAI_pretrain   # sensible name for the job
-#SBATCH --mem=128G                 # Default memory per CPU is 3GB.
+#SBATCH --mem=64G                 # Default memory per CPU is 3GB.
 #SBATCH --partition=gpu # Use the verysmallmem-partition for jobs requiring < 10 GB RAM.
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=16
@@ -53,4 +53,4 @@ nvidia-modprobe -u -c=0
 export ITER_PER_EPOCH=128
 export NUM_CPUS=4
 export RAY_ROOT=$TMPDIR/$USER/ray
-singularity exec --nv deoxys.sif python experiment_binary.py $1 $PROJECTS/ngoc/CubiAI/perf/pretrain/$2 --temp_folder $SCRATCH_PROJECTS/ceheads/CubiAI/pretrain/$2 --epochs $3 ${@:4}
+singularity exec --nv deoxys-efficient.sif python experiment_binary.py $1 $PROJECTS/ngoc/CubiAI/perf/pretrain/$2 --temp_folder $SCRATCH_PROJECTS/ceheads/CubiAI/pretrain/$2 --epochs $3 ${@:4}
