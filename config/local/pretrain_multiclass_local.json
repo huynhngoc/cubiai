@@ -9,7 +9,7 @@
             "filename": "//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/test_normal_level1_level2.h5",
             "batch_size": 4,
             "batch_cache": 2,
-            "x_name": "images",
+            "x_name": "image",
             "y_name": "diagnosis",
             "train_folds": [
                 0
@@ -59,7 +59,7 @@
                 "class_name": "AUC"
             },
             {
-                "class_name": "CategoricalCrossentropy"
+                "class_name": "KappaLoss"
             },
             {
                 "class_name": "BinaryAccuracy"

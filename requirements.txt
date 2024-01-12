@@ -1,4 +1,5 @@
 tensorflow==2.5.0
+tensorflow_addons
 http://github.com/huynhngoc/deoxys/archive/master.zip
 numpy
 pandas
