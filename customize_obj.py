@@ -2,11 +2,15 @@ from deoxys.customize import custom_architecture, custom_preprocessor
 from deoxys.loaders.architecture import BaseModelLoader
 from deoxys.data.preprocessor import BasePreprocessor
 from deoxys.utils import deep_copy
+from deoxys.model.losses import Loss
+from deoxys.customize import custom_loss
+
 
 
 from tensorflow.keras.applications import efficientnet
 from tensorflow.keras.layers import Dropout, Dense
 from tensorflow.keras.models import Model
+import tensorflow_addons as tfa
 
 import numpy as np
 
@@ -92,3 +96,18 @@ class OneHot(BasePreprocessor):
                 new_targets[..., i][targets == i] = 1
 
         return images, new_targets
+
+@custom_loss
+class KappaLoss(Loss):
+    """Used to sum two or more loss functions.
+    """
+
+    def __init__(
+            self, num_class=4,
+            reduction="auto", name="kappa_loss"):
+        super().__init__(reduction, name)
+        self.loss = tfa.losses.WeightedKappaLoss(num_classes=num_class)
+
+
+    def call(self, target, prediction):
+        return self.loss(target, prediction)

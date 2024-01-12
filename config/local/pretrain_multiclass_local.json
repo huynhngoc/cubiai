@@ -9,8 +9,8 @@
             "filename": "//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/test_normal_level1_level2.h5",
             "batch_size": 4,
             "batch_cache": 2,
-            "x_name": "x",
-            "y_name": "y",
+            "x_name": "image",
+            "y_name": "diagnosis",
             "train_folds": [
                 0
             ],
@@ -25,7 +25,7 @@
                 {
                     "class_name": "OneHot",
                     "config": {
-                        "num_class": 3
+                        "num_class": 4 
                     }
                 },
                 {
@@ -45,7 +45,7 @@
     },
     "model_params": {
         "loss": {
-            "class_name": "CategoricalCrossentropy",
+            "class_name": "KappaLoss",
             "config": {}
         },
         "optimizer": {
@@ -59,7 +59,7 @@
                 "class_name": "AUC"
             },
             {
-                "class_name": "CategoricalCrossentropy"
+                "class_name": "KappaLoss"
             },
             {
                 "class_name": "BinaryAccuracy"
@@ -92,7 +92,7 @@
     },
     "architecture": {
         "type": "EfficientNetModelLoader",
-        "num_class": 3,
+        "num_class": 4,
         "pretrained": true,
         "class_name": "B0"
     }
