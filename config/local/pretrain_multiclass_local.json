@@ -6,7 +6,7 @@
     "dataset_params": {
         "class_name": "H5Reader",
         "config": {
-            "filename": "//nmbu.no/LargeFile/Project/CubiAI/preprocess/datasets/test_normal_level1_level2.h5",
+            "filename": "S:/Master/data/elbow_normal_abnormal_800.h5",
             "batch_size": 4,
             "batch_cache": 2,
             "x_name": "image",
@@ -38,8 +38,8 @@
     },
     "input_params": {
         "shape": [
-            224,
-            224,
+            800,
+            800,
             3
         ]
     },
