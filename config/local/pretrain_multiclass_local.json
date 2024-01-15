@@ -59,7 +59,7 @@
                 "class_name": "AUC"
             },
             {
-                "class_name": "KappaLoss"
+                "class_name": "CategoricalCrossentropy"
             },
             {
                 "class_name": "BinaryAccuracy"
