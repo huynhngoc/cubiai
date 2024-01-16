@@ -6,19 +6,22 @@
     "dataset_params": {
         "class_name": "H5Reader",
         "config": {
-            "filename": "S:/Master/data/elbow_normal_abnormal_800.h5",
+            "filename": "/mnt/project/ngoc/CubiAI/datasets/elbow_normal_abnormal_800.h5",
             "batch_size": 4,
             "batch_cache": 2,
             "x_name": "image",
             "y_name": "diagnosis",
             "train_folds": [
-                0
+                0,
+                1,
+                2,
+                3
             ],
             "val_folds": [
-                1
+                4
             ],
             "test_folds": [
-                2
+                5
             ],
             "shuffle": true,
             "preprocessors": [
