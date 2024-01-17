@@ -114,7 +114,7 @@ if __name__ == '__main__':
         save_val_inputs=False,
     ).apply_post_processors(
         map_meta_data=meta, run_test=False,
-        metrics=['AUC', 'roc_auc', 'roc_auc', 'KappaLoss',
+        metrics=['AUC', 'roc_auc', 'roc_auc', 'CategoricalCrossentropy',
                  'BinaryAccuracy', 'mcc', 'accuracy'],
         metrics_sources=['tf', 'sklearn', 'sklearn',
                          'tf', 'tf', 'sklearn', 'sklearn'],
@@ -129,7 +129,7 @@ if __name__ == '__main__':
     ).run_test(
     ).apply_post_processors(
         map_meta_data=meta, run_test=True,
-        metrics=['AUC', 'roc_auc', 'roc_auc', 'KappaLoss',
+        metrics=['AUC', 'roc_auc', 'roc_auc', 'CategoricalCrossentropy',
                  'BinaryAccuracy', 'mcc', 'accuracy'],
         metrics_sources=['tf', 'sklearn',
                          'tf', 'tf', 'sklearn', 'sklearn'],
