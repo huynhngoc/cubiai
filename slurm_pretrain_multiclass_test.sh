@@ -26,22 +26,22 @@ if [ $# -lt 3 ];
     exit 0
     fi
 
-if [ ! -d "$TMPDIR/$USER/CubiAI" ]
+#if [ ! -d "$TMPDIR/$USER/CubiAI" ]
     then
     echo "Didn't find dataset folder. Copying files..."
     mkdir --parents $TMPDIR/$USER/CubiAI
     fi
 
-for f in $(ls $PROJECTS/ngoc/CubiAI/datasets/*)
-    do
-    FILENAME=`echo $f | awk -F/ '{print $NF}'`
-    echo $FILENAME
-    if [ ! -f "$TMPDIR/$USER/CubiAI/$FILENAME" ]
-        then
-        echo "copying $f"
-        cp -r $PROJECTS/ngoc/CubiAI/datasets/$FILENAME $TMPDIR/$USER/CubiAI/
-        fi
-    done
+#for f in $(ls $PROJECTS/ngoc/CubiAI/datasets/*)
+#    do
+#    FILENAME=`echo $f | awk -F/ '{print $NF}'`
+#    echo $FILENAME
+#    if [ ! -f "$TMPDIR/$USER/CubiAI/$FILENAME" ]
+#        then
+#        echo "copying $f"
+#        cp -r $PROJECTS/ngoc/CubiAI/datasets/$FILENAME $TMPDIR/$USER/CubiAI/
+#        fi
+#    done
 
 
 echo "Finished seting up files."
@@ -53,4 +53,4 @@ nvidia-modprobe -u -c=0
 # export ITER_PER_EPOCH=200
 export NUM_CPUS=4
 export RAY_ROOT=$TMPDIR/$USER/ray
-singularity exec --nv deoxys.sif python experiment_multiclass_test.py $1 $PROJECTS/ngoc/CubiAI/perf/pretrain/$2 --temp_folder $SCRATCH_PROJECTS/ceheads/CubiAI/pretrain/$2 --epochs $3 ${@:4}
+singularity exec --nv deoxys_efficient.sif python experiment_multiclass_test.py $1 $PROJECTS/ngoc/CubiAI/perf/pretrain/$2 --temp_folder $SCRATCH_PROJECTS/ceheads/CubiAI/pretrain/$2 --epochs $3 ${@:4}
