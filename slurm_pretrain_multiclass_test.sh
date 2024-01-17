@@ -53,4 +53,4 @@ nvidia-modprobe -u -c=0
 # export ITER_PER_EPOCH=200
 export NUM_CPUS=4
 export RAY_ROOT=$TMPDIR/$USER/ray
-singularity exec --nv deoxys_efficient.sif python experiment_multiclass_test.py $1 $PROJECTS/ngoc/CubiAI/perf/pretrain/$2 --temp_folder $SCRATCH_PROJECTS/ceheads/CubiAI/pretrain/$2 --epochs $3 ${@:4}
+singularity exec --nv deoxys-efficient.sif python experiment_multiclass_test.py $1 $PROJECTS/ngoc/CubiAI/perf/pretrain/$2 --temp_folder $SCRATCH_PROJECTS/ceheads/CubiAI/pretrain/$2 --epochs $3 ${@:4}
