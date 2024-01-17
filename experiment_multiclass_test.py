@@ -26,7 +26,17 @@ class Matthews_corrcoef_scorer:
         return matthews_corrcoef(*args, **kwargs)
 
 
-metrics.SCORERS['mcc'] = Matthews_corrcoef_scorer()
+# metrics.SCORERS['mcc'] = Matthews_corrcoef_scorer()
+
+try:
+    metrics.SCORERS['mcc'] = Matthews_corrcoef_scorer()
+except:
+    pass
+try:
+    metrics._scorer._SCORERS['mcc'] = Matthews_corrcoef_scorer()
+except:
+    pass
+
 
 
 def metric_avg_score(res_df, postprocessor):
