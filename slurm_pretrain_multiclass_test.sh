@@ -27,10 +27,10 @@ if [ $# -lt 3 ];
     fi
 
 #if [ ! -d "$TMPDIR/$USER/CubiAI" ]
-    then
-    echo "Didn't find dataset folder. Copying files..."
-    mkdir --parents $TMPDIR/$USER/CubiAI
-    fi
+   # then
+  #  echo "Didn't find dataset folder. Copying files..."
+ #   mkdir --parents $TMPDIR/$USER/CubiAI
+#    fi
 
 #for f in $(ls $PROJECTS/ngoc/CubiAI/datasets/*)
 #    do
