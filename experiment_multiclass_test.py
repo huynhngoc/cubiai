@@ -38,7 +38,6 @@ except:
     pass
 
 
-
 def metric_avg_score(res_df, postprocessor):
     res_df['avg_score'] = res_df[['AUC', 'accuracy', 'mcc']].mean(axis=1)
     return res_df
@@ -48,7 +47,7 @@ if __name__ == '__main__':
     gpus = tf.config.list_physical_devices('GPU')
     if not gpus:
         raise RuntimeError("GPU Unavailable")
-    
+
     parser = argparse.ArgumentParser()
     parser.add_argument("config_file")
     parser.add_argument("log_folder")
@@ -118,9 +117,9 @@ if __name__ == '__main__':
                  'BinaryAccuracy', 'mcc', 'accuracy'],
         metrics_sources=['tf', 'sklearn', 'sklearn',
                          'tf', 'tf', 'sklearn', 'sklearn'],
-        process_functions=[None, None, None, None, decode, decode],
+        process_functions=[None, None, None, None, None, decode, decode],
         metrics_kwargs=[{}, {'metric_name': 'roc_auc_ovr', 'multi_class': 'ovr'},
-                        {}, {}, {}, {}]
+                        {}, {}, {}, {}, {}]
     ).plot_performance().load_best_model(
         monitor=args.monitor,
         use_raw_log=False,
@@ -131,9 +130,9 @@ if __name__ == '__main__':
         map_meta_data=meta, run_test=True,
         metrics=['AUC', 'roc_auc', 'roc_auc', 'CategoricalCrossentropy',
                  'BinaryAccuracy', 'mcc', 'accuracy'],
-        metrics_sources=['tf', 'sklearn',
+        metrics_sources=['tf', 'sklearn', 'sklearn',
                          'tf', 'tf', 'sklearn', 'sklearn'],
-        process_functions=[None, None, None, None, decode, decode],
+        process_functions=[None, None, None, None, None, decode, decode],
         metrics_kwargs=[{}, {'metric_name': 'roc_auc_ovr', 'multi_class': 'ovr'},
-                        {}, {}, {}, {}]
+                        {}, {}, {}, {}, {}]
     )
