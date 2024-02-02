@@ -50,6 +50,7 @@ echo "Finished seting up files."
 nvidia-modprobe -u -c=0
 
 # Run experiment
+export MAX_SAVE_STEP_GB=0
 export ITER_PER_EPOCH=128
 export NUM_CPUS=4
 export RAY_ROOT=$TMPDIR/$USER/ray
