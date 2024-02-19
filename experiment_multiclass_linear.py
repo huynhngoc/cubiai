@@ -38,7 +38,7 @@ except:
 
 
 def metric_avg_score(res_df, postprocessor):
-    res_df['avg_score'] = res_df[['AUC', 'accuracy', 'mcc']].mean(axis=1)
+    res_df['avg_score'] = res_df[['accuracy', 'mcc']].mean(axis=1)
     return res_df
 
 
@@ -98,7 +98,7 @@ if __name__ == '__main__':
         new_predictions[predictions < 1.5] = 1
         new_predictions[predictions < 0.5] = 0
 
-        return targets, predictions
+        return targets, new_predictions
 
     exp = DefaultExperimentPipeline(
         log_base_path=args.log_folder,

@@ -54,7 +54,7 @@ class EfficientNetModelLoader(BaseModelLoader):
         else:
             activation = 'softmax'
         if self.options.get('activation', None) is not None:
-            activation = self.option['activation']
+            activation = self.options['activation']
 
         if pretrained:
             model = efficientNet(include_top=False, classes=num_class,
@@ -95,6 +95,30 @@ class OneHot(BasePreprocessor):
         else:
             for i in range(self.num_class):
                 new_targets[..., i][targets == i] = 1
+
+        return images, new_targets
+
+
+@custom_preprocessor
+class LevelEncode(BasePreprocessor):
+    def __init__(self, num_class=2):
+        if num_class <= 2:
+            num_class = 1
+        self.num_class = num_class
+
+    def transform(self, images, targets):
+        # labels to level encode
+        # num_class = 4
+        # class 0 --> [0, 0, 0]
+        # class 1 --> [1, 0, 0]
+        # class 2 --> [1, 1, 0]
+        # class 3 --> [1, 1, 1]
+        new_targets = np.zeros((len(targets), self.num_class-1))
+        if self.num_class == 1:
+            new_targets[..., 0] = targets
+        else:
+            for i in range(1, self.num_class):
+                new_targets[..., :i][targets == i] = 1
 
         return images, new_targets
 
