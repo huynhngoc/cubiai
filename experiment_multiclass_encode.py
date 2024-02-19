@@ -91,13 +91,13 @@ if __name__ == '__main__':
 
     def decode_binarize(targets, predictions):
         # _, binary_predictions = binarize(targets, predictions)
-        new_predictions = np.zeros(targets.shape, dtype=targets.dtype)
+        new_predictions = np.zeros(targets.shape[0], dtype=targets.dtype)
         prev_condition = predictions[:, 0] > 0.5
         for i in range(predictions.shape[1]):
             next_condition = predictions[:, i] > 0.5
             prev_condition = prev_condition & next_condition
             new_predictions[prev_condition] = i + 1
-        return targets, new_predictions
+        return targets.sum(axis=-1), new_predictions
 
     exp = DefaultExperimentPipeline(
         log_base_path=args.log_folder,
