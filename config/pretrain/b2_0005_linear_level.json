@@ -1,0 +1,70 @@
+{
+    "train_params": {
+        "epochs": 200,
+        "callbacks": []
+    },
+    "dataset_params": {
+        "class_name": "H5Reader",
+        "config": {
+            "filename": "/mnt/project/ngoc/CubiAI/datasets/elbow_abnormal_800.h5",
+            "batch_size": 8,
+            "batch_cache": 8,
+            "x_name": "image",
+            "y_name": "level",
+            "train_folds": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "val_folds": [
+                4
+            ],
+            "test_folds": [
+                5
+            ],
+            "shuffle": true,
+            "preprocessors": [
+                {
+                    "class_name": "PretrainedEfficientNet",
+                    "config": {}
+                }
+            ],
+            "augmentations": []
+        }
+    },
+    "input_params": {
+        "shape": [
+            800,
+            800,
+            3
+        ]
+    },
+    "model_params": {
+        "loss": {
+            "class_name": "MeanSquaredError",
+            "config": {}
+        },
+        "optimizer": {
+            "class_name": "adam",
+            "config": {
+                "learning_rate": 0.0005
+            }
+        },
+        "metrics": [
+            {
+                "class_name": "MeanAbsoluteError"
+            },
+            {
+                "class_name": "MeanSquaredError"
+            }
+        ]
+    },
+    "architecture": {
+        "type": "EfficientNetModelLoader",
+        "num_class": 1,
+        "pretrained": true,
+        "activation": "linear",
+        "class_name": "B2"
+    }
+}
