@@ -6,7 +6,6 @@ from deoxys.model.losses import Loss
 from deoxys.customize import custom_loss
 
 
-
 from tensorflow.keras.applications import efficientnet
 from tensorflow.keras.layers import Dropout, Dense
 from tensorflow.keras.models import Model
@@ -54,6 +53,8 @@ class EfficientNetModelLoader(BaseModelLoader):
             activation = 'sigmoid'
         else:
             activation = 'softmax'
+        if self.options.get('activation', None) is not None:
+            activation = self.option['activation']
 
         if pretrained:
             model = efficientNet(include_top=False, classes=num_class,
@@ -89,13 +90,14 @@ class OneHot(BasePreprocessor):
     def transform(self, images, targets):
         # labels to one-hot encode
         new_targets = np.zeros((len(targets), self.num_class))
-        if self.num_class==1:
+        if self.num_class == 1:
             new_targets[..., 0] = targets
         else:
             for i in range(self.num_class):
                 new_targets[..., i][targets == i] = 1
 
         return images, new_targets
+
 
 @custom_loss
 class KappaLoss(Loss):
@@ -107,7 +109,6 @@ class KappaLoss(Loss):
             reduction="auto", name="kappa_loss"):
         super().__init__(reduction, name)
         self.loss = tfa.losses.WeightedKappaLoss(num_classes=num_class)
-
 
     def call(self, target, prediction):
         return self.loss(target, prediction)
