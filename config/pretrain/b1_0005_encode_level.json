@@ -95,7 +95,7 @@
     },
     "architecture": {
         "type": "EfficientNetModelLoader",
-        "num_class": 3,
+        "num_class": 2,
         "pretrained": true,
         "activation": "sigmoid",
         "class_name": "B1"

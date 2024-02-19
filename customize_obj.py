@@ -55,6 +55,7 @@ class EfficientNetModelLoader(BaseModelLoader):
             activation = 'softmax'
         if self.options.get('activation', None) is not None:
             activation = self.options['activation']
+            num_class = self.options['num_class']
 
         if pretrained:
             model = efficientNet(include_top=False, classes=num_class,
