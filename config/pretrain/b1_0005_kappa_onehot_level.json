@@ -50,13 +50,13 @@
         "loss": {
             "class_name": "KappaLoss",
             "config": {
-                "num_class": 3
+                "num_class":3
             }
         },
         "optimizer": {
             "class_name": "adam",
             "config": {
-                "learning_rate": 0.001
+                "learning_rate": 0.0005
             }
         },
         "metrics": [
@@ -99,6 +99,6 @@
         "type": "EfficientNetModelLoader",
         "num_class": 3,
         "pretrained": true,
-        "class_name": "B3"
+        "class_name": "B1"
     }
 }

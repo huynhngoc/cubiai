@@ -99,6 +99,6 @@
         "type": "EfficientNetModelLoader",
         "num_class": 3,
         "pretrained": true,
-        "class_name": "B3"
+        "class_name": "B4"
     }
 }

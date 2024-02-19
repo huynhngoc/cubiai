@@ -49,9 +49,7 @@
     "model_params": {
         "loss": {
             "class_name": "KappaLoss",
-            "config": {
-                "num_class": 3
-            }
+            "config": {}
         },
         "optimizer": {
             "class_name": "adam",

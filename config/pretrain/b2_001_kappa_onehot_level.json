@@ -49,9 +49,7 @@
     "model_params": {
         "loss": {
             "class_name": "KappaLoss",
-            "config": {
-                "num_class": 3
-            }
+            "config": {}
         },
         "optimizer": {
             "class_name": "adam",
@@ -99,6 +97,6 @@
         "type": "EfficientNetModelLoader",
         "num_class": 3,
         "pretrained": true,
-        "class_name": "B3"
+        "class_name": "B2"
     }
 }
