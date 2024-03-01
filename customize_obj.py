@@ -180,7 +180,7 @@ class KappaLoss(Loss):
     """
 
     def __init__(
-            self, num_class=4, weightage='linear',
+            self, num_class=3, weightage='linear',
             reduction="auto", name="kappa_loss"):
         super().__init__(reduction, name)
         self.num_class = num_class
