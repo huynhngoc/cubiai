@@ -1,3 +1,5 @@
+from skimage.exposure import equalize_adapthist
+from skimage.filters import unsharp_mask
 from deoxys.customize import custom_architecture, custom_preprocessor
 from deoxys.loaders.architecture import BaseModelLoader
 from deoxys.data.preprocessor import BasePreprocessor
@@ -76,7 +78,55 @@ class PretrainedEfficientNet(BasePreprocessor):
         # efficientNet requires input between [0-255]
         images = images * 255
         # pretrain require 3 channel
-        new_images = np.concatenate([images, images, images], axis=-1)
+        if images.shape[-1] == 1:
+            new_images = np.concatenate([images, images, images], axis=-1)
+
+        return new_images, targets
+
+
+@custom_preprocessor
+class ChannelRepeater(BasePreprocessor):
+    def __init__(self, channel=0, num_repeat=3):
+        self.channel = channel
+        if '__iter__' not in dir(self.channel):
+            self.channel = [channel]
+        self.num_repeat = num_repeat
+
+    def transform(self, images, targets):
+        new_images = []
+        for _ in range(self.num_repeat):
+            new_images.append(images[..., self.channel])
+        new_images = np.concatenate(new_images, axis=-1)
+
+        return new_images, targets
+
+
+@custom_preprocessor
+class EqualizeAdaHist(BasePreprocessor):
+    def __init__(self, channel=0):
+        self.channel = channel
+
+    def transform(self, images, targets):
+        transformed_images = []
+        for img in images[..., self.channel]:
+            transformed_images.append(equalize_adapthist(img))
+        new_images = np.array(images)
+        new_images[..., self.channel] = np.array(transformed_images)
+
+        return new_images, targets
+
+
+@custom_preprocessor
+class Unsharp(BasePreprocessor):
+    def __init__(self, channel=0):
+        self.channel = channel
+
+    def transform(self, images, targets):
+        transformed_images = []
+        for img in images[..., self.channel]:
+            transformed_images.append(unsharp_mask(img, radius=5, amount=2))
+        new_images = np.array(images)
+        new_images[..., self.channel] = np.array(transformed_images)
 
         return new_images, targets
 
@@ -130,10 +180,21 @@ class KappaLoss(Loss):
     """
 
     def __init__(
-            self, num_class=4,
+            self, num_class=4, weightage='linear',
             reduction="auto", name="kappa_loss"):
         super().__init__(reduction, name)
-        self.loss = tfa.losses.WeightedKappaLoss(num_classes=num_class)
+        self.num_class = num_class
+        self.weightage = weightage
+        self.loss = tfa.losses.WeightedKappaLoss(
+            num_classes=num_class, weightage=weightage)
 
     def call(self, target, prediction):
         return self.loss(target, prediction)
+
+    def get_config(self):
+        config = {
+            'num_class': self.num_class,
+            'weightage': self.weightage
+        }
+        base_config = super().get_config()
+        return dict(list(base_config.items()) + list(config.items()))
