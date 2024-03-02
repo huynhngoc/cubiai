@@ -77,6 +77,7 @@ class PretrainedEfficientNet(BasePreprocessor):
     def transform(self, images, targets):
         # efficientNet requires input between [0-255]
         images = images * 255
+        new_images = np.array(images)
         # pretrain require 3 channel
         if images.shape[-1] == 1:
             new_images = np.concatenate([images, images, images], axis=-1)
