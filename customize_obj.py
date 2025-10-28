@@ -15,6 +15,18 @@ import tensorflow_addons as tfa
 
 import numpy as np
 
+def binarize_images(X, n_bits):
+    n_samples, x_dim, y_dim = X.shape
+    X = X.reshape(n_samples, -1)
+    thresholds = np.linspace(0, 1-(1/n_bits), n_bits)
+    x_bin = (X > thresholds).astype(np.uint32)
+    return x_bin.reshape(X.shape[0], x_dim, y_dim, n_bits)
+
+def reverse_images(X, n_bits):
+    thresholds = np.linspace(0, 1-(1/n_bits), n_bits)
+    return np.max(X * thresholds, axis=-1)
+
+
 
 @custom_architecture
 class EfficientNetModelLoader(BaseModelLoader):
@@ -83,6 +95,19 @@ class PretrainedEfficientNet(BasePreprocessor):
             new_images = np.concatenate([images, images, images], axis=-1)
 
         return new_images, targets
+
+
+@custom_preprocessor
+class BinarizeImage(BasePreprocessor):
+    def __init__(self, n_bits=8):
+        self.n_bits = n_bits
+
+    def transform(self, images, targets):
+        n_bits = self.n_bits
+        thresholds = np.linspace(0, 1-(1/n_bits), n_bits)
+        x_bin = (images > thresholds).astype(np.uint32).reshape(images.shape[0], -1, n_bits)
+
+        return np.max(x_bin * thresholds, axis=-1).reshape(images.shape), targets
 
 
 @custom_preprocessor
